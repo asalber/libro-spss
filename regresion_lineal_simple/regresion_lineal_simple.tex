@@ -1,0 +1,356 @@
+% Version control information:
+%$HeadURL: https://practicas-spss.googlecode.com/svn/trunk/regresion_lineal_simple/regresion_lineal_simple.tex $
+%$LastChangedDate: 2010-09-27 16:37:11 +0200 (lun, 27 sep 2010) $
+%$LastChangedRevision: 3 $
+%$LastChangedBy: asalber $
+%$Id: regresion_lineal_simple.tex 3 2010-09-27 14:37:11Z asalber $
+
+\chapter{Regresión Lineal Simple}
+
+\section{Fundamentos teóricos}
+La \emph{regresión} es la parte de la estadística que trata de determinar la
+posible relación entre una variable numérica $Y$, que suele llamarse
+\emph{variable dependiente}, y otro conjunto de variables numéricas, $X_1,
+X_2,\ldots,X_n$, conocidas como \emph{variables independientes}, de una misma
+población. Dicha relación se refleja mediante un modelo funcional
+$y=f(x_1,\ldots,x_n)$.
+
+El caso más sencillo se da cuando sólo hay una variable independiente $X$, y
+entonces se habla de \emph{regresión simple}. En este caso el modelo que
+explica la relación entre $X$ e $Y$ es una función de una variable $y=f(x)$.
+
+Dependiendo de la forma de esta función, existen muchos tipos de regresión
+simple. Los más habituales son los que aparecen en la siguiente tabla:
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+ Familia de curvas       &     Ecuación genérica      \\
+\hline\hline
+ Lineal                  &          $y=b_0+b_1x$          \\
+\hline
+ Cuadrática              &       $y=b_0+b_1x+b_2x^2$        \\
+\hline
+ Cúbica & $y=b_0+b_1x+b_2x^2+b_3x^3$ \\
+\hline
+ Potencia               &       $y=b_0\cdot x^{b_1}$       \\
+\hline
+ Exponencial             &     $y=b_0\cdot e^{b_1x}$      \\
+\hline
+ Logarítmica             &       $y=b_0+b_1\ln x$        \\
+\hline
+Inversa             &       $y=b_0+\frac{b_1}{x}$        \\
+\hline
+Compuesto              &       $y=b_0b_1^x$        \\
+\hline
+Crecimiento             &       $y= e^{b_0 + b_1x}$        \\
+\hline
+G (Curva-S)             &       $y= e^{b_0 +\frac{b_1}{x} }$        \\
+\hline
+\end{tabular}
+\end{center}
+
+Para elegir un tipo de modelo u otro, se suele representar el \emph{diagrama de
+dispersión}, que consiste en dibujar sobre unos ejes cartesianos
+correspondientes a las variables $X$ e $Y$, los pares de valores $(x_i,y_j)$
+observados en cada individuo de la muestra.
+
+\begin{ejemplo}
+En la figura \ref{g:estatura-peso} aparece el diagrama de dispersión
+correspondiente a una muestra de 30 individuos en los que se ha medido la estatura
+en cm ($X$) y el peso en kg ($Y$). En este caso la forma de la nube
+de puntos refleja una relación lineal entre la estatura y el peso.
+
+\begin{figure}[h!]
+  \centering
+  \scalebox{0.75}{\input{regresion_lineal_simple/img/diagrama_dispersion_estatura_peso}}
+  \caption{Diagrama de dispersión. El punto (179,85) indicado corresponde a un
+  individuo de la muestra que mide 179 cm y pesa 85 Kg.}\label{g:estatura-peso}
+\end{figure}
+\end{ejemplo}
+
+Según la forma de la nube de puntos del diagrama, se elige el modelo más
+apropiado (figura~\ref{g:tiposrelaciones}), y se determinan los parámetros de dicho modelo para que la función
+resultante se ajuste lo mejor posible a la nube de puntos.
+
+\begin{figure}[h!]
+\centering 
+\subfigure[Sin relación.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_sin_relacion}}}\qquad
+\subfigure[Relación lineal.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_lineal}}}\qquad
+\subfigure[Relación polinómica.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_parabolica}}}\\
+\subfigure[Relación exponencial.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_exponencial}}}\qquad
+\subfigure[Relación logarítmica.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_logaritmica}}}\qquad
+\subfigure[Relación inversa.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_inversa}}}\\
+\caption{Diagramas de dispersión correspondientes a distintos tipos de relaciones
+entre variables.} \label{g:tiposrelaciones}
+\end{figure}
+
+\clearpage
+
+El criterio que suele utilizarse para obtener la función óptima, es que la distancia
+de cada punto a la curva, medida en el eje Y, sea lo menor posible. A estas distancias se les
+llama \emph{residuos} o \emph{errores} en $Y$ (figura~\ref{g:residuos}). La función
+que mejor se ajusta a la nube de puntos será, por tanto, aquella que hace mínima la
+suma de los cuadrados de los residuos.\footnote{Se elevan al cuadrado para evitar que en la suma se compensen los residuos positivos con los negativos.}
+
+\begin{figure}[h!]
+  \centering
+  \scalebox{0.8}{\input{regresion_lineal_simple/img/residuos_y}}
+  \caption{Residuos o errores en $Y$. El residuo correspondiente a un punto $(x_i,y_j)$
+  es la diferencia entre el valor $y_j$ observado en la muestra, y el valor
+  teórico del modelo $f(x_i)$, es decir, $e_{ij}=y_j-f(x_i)$.}\label{g:residuos}
+\end{figure}
+
+En el caso de que la nube de puntos tenga forma lineal y optemos por explicar la
+relación entre $X$ e $Y$ mediante una recta $y=a+bx$, los parámetros a
+determinar son $a$ (punto de corte con el eje de ordenadas) y $b$ (pendiente de
+la recta). Los valores de estos parámetros que hacen mínima la suma de
+residuos al cuadrado, determinan la recta óptima. Esta recta se conoce como \emph{recta de
+regresión de $Y$ sobre $X$} y explica la variable $Y$ en función de la variable
+$X$. Su ecuación es
+\[ y= \bar{y}+\frac{s_{xy}}{s_x^2}(x-\bar{x}),\]
+donde $s_{xy}$ es un estadístico llamado \emph{covarianza} que mide el grado de relación lineal, y cuya fórmula es
+\[s_{xy}=\frac{1}{n}\sum_{i,j} (x_i-\bar{x}) (y_j-\bar{y}) n_{ij}.\]
+
+\begin{ejemplo}
+En la figura~\ref{g:rectas-estatura-peso} aparecen las rectas de regresión de Estatura sobre Peso y de Peso sobre Estatura del ejemplo anterior.
+
+\begin{figure}[h!]
+  \centering
+  \scalebox{0.8}{\input{regresion_lineal_simple/img/rectas_regresion}}
+  \caption{Rectas de regresión de Estatura sobre Peso y de Peso sobre Estatura. Las rectas de regresión siempre se cortan en el punto de medias $(\bar x, \bar y)$}\label{g:rectas-estatura-peso}
+\end{figure}
+\end{ejemplo}
+
+La pendiente de la recta de regresión de $Y$ sobre $X$ se conoce como
+\emph{coeficiente de regresión de $Y$ sobre $X$}, y mide el incremento que sufrirá
+la variable $Y$ por cada unidad que se incremente la variable $X$, según la recta.
+
+Cuanto más pequeños sean los residuos, en valor absoluto, mejor se ajustará el modelo a la nube de
+puntos, y por tanto, mejor explicará la relación entre $X$ e $Y$. Cuando todos
+los residuos son nulos, la recta pasa por todos los puntos de la nube, y la
+relación es perfecta. En este caso ambas rectas, la de $Y$ sobre $X$ y la de
+$X$ sobre $Y$ coinciden (figura~\ref{g:dependenciafuncional}).
+
+Por contra, cuando no existe relación lineal entre las variables, la recta de
+regresión de $Y$ sobre $X$ tiene pendiente nula, y por tanto la
+ecuación es $y=\bar y$, en la que, efectivamente no aparece $x$, o $x=\bar x$
+en el caso de la recta de regresión $X$ sobre $Y$, de manera que ambas rectas
+se cortan perpendicularmente (figura~\ref{g:independencialineal}).
+
+\begin{figure}[htbp]
+\centering 
+\subfigure[Dependencia funcional lineal.] {\label{g:dependenciafuncional}
+\scalebox{0.7}{\input{regresion_lineal_simple/img/rectas_dependencia_lineal_perfecta}}}\qquad
+\subfigure[Independencia lineal.]{\label{g:independencialineal}
+\scalebox{0.7}{\input{regresion_lineal_simple/img/rectas_independencia_lineal}}}
+\caption{Distintos grados de dependencia. En el primer caso, la relación es perfecta
+y los residuos son nulos. En el segundo caso no existe relación lineal y la
+pendiente de la recta es nula.}
+\end{figure}
+
+
+
+\section{Ejercicios prácticos}
+\begin{enumerate}[leftmargin=*]
+\item Se han medido dos variables $A$ y $B$ en 10 individuos
+obteniendo los siguientes resultados:
+\begin{center}
+\begin{tabular}{c|cccccccccc}
+$A$& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline $B$& 2 & 5 & 8 & 11 & 14 & 17 & 20 & 23 & 26 & 29
+\end{tabular}
+\end{center}
+
+Se pide:
+
+\begin{enumerate}
+\item  Crear las variables \textsf{A} y \textsf{B} e introducir estos datos.
+
+
+\item  Dibujar el diagrama de dispersión correspondiente.
+
+\begin{indicacion}{
+\begin{enumerate}
+\item Seleccionar el menú \menu{Gráficos->Dispersión...}, elegir
+la opción \texttt{simple} y  hacer click sobre el botón
+\texttt{Definir}. \item Seleccionar la variable \textsf{B} en el
+campo \texttt{Eje Y} del cuadro de diálogo. \item Seleccionar la
+variable \textsf{A} en el campo \texttt{Eje X} del cuadro de
+diálogo y hacer click sobre el botón \texttt{Aceptar}.
+\end{enumerate}}
+\end{indicacion}
+
+
+En vista del diagrama, ¿qué tipo de modelo crees que explicará
+mejor la relación entre el A y B?
+
+\item Calcular la recta de regresión de \textsf{B} sobre
+\textsf{A}.
+
+\begin{indicacion}{
+\begin{enumerate}
+\item Seleccionar el menú \menu{Analizar->Regresión->Lineal...}.
+
+\item Seleccionar la variable \textsf{B} en el campo
+\texttt{Dependiente} del cuadro de diálogo.
+
+\item Seleccionar la variable \textsf{A} en el campo
+\texttt{Independiente} del cuadro de diálogo y hacer click sobre
+el botón \texttt{Aceptar}.
+
+\item Para escribir la recta, observaremos en la ventana de
+resultados obtenida, la tabla denominada \texttt{Coeficientes}, y
+en la columna \texttt{B} de los \texttt{Coeficientes no
+estandarizados}, encontramos en la primera fila la
+\textsf{constante} de la recta y en la segunda la
+\texttt{pendiente}.
+
+\end{enumerate}}
+\end{indicacion}
+
+
+\item Dibujar dicha recta sobre el diagrama de dispersión.
+
+\begin{indicacion}{
+\begin{enumerate}
+\item Editar el gráfico realizado anteriormente haciendo un doble
+click sobre él.
+
+\item Seleccionar los puntos haciendo click sobre alguno de ellos.
+\item Seleccionar el menú \menu{Gráfico->Añadir elemento de
+gráfico->Linea de ajuste total} (También se podría usar en lugar
+del menu, la barra de herramientas) \item Cerrar el editor de
+gráficos, cerrando la ventana.
+\end{enumerate}}
+\end{indicacion}
+
+
+\item Calcular la recta de regresión de \textsf{A} sobre
+\textsf{B} y dibujarla sobre el correspondiente diagrama de
+dispersión.
+
+\begin{indicacion}{
+Repetir los pasos de los apartados anteriores pero escogiendo como
+variable \texttt{Dependiente} la variable \textsf{A}, y como
+variable \texttt{Independiente} la variable \textsf{B}}
+\end{indicacion}
+
+
+\item ¿Son grandes los residuos? Comentar los resultados.
+\end{enumerate}
+
+
+\item  En una licenciatura se quiere estudiar la relación entre el número
+medio de horas de estudio diarias y el número de asignaturas suspensas. Para ello se
+obtuvo la siguiente muestra:
+\begin{center}
+\begin{tabular}{cccccccc}
+  Horas & Suspensos &  & Horas & Suspensos & & Horas & Suspensos  \\
+  \cline{1-2}\cline{4-5}\cline{7-8}
+  3.5 & 1 & & 2.2 & 2 & & 1.3 & 4 \\
+  0.6 & 5 & & 3.3 & 0 & & 3.1 & 0 \\
+  2.8 & 1 & & 1.7 & 3 & & 2.3 & 2 \\
+  2.5 & 3 & & 1.1 & 3 & & 3.2 & 2 \\
+  2.6 & 1 & & 2.0 & 3 & & 0.9 & 4 \\
+  3.9 & 0 & & 3.5 & 0 & & 1.7 & 2 \\
+  1.5 & 3 & & 2.1 & 2 & & 0.2 & 5 \\
+  0.7 & 3 & & 1.8 & 2 & & 2.9 & 1 \\
+  3.6 & 1 & & 1.1 & 4 & & 1.0 & 3 \\
+  3.7 & 1 & & 0.7 & 4 & & 2.3 & 2 \\
+\end{tabular}
+
+\end{center}
+
+Se pide:
+
+\begin{enumerate}
+\item  Crear las variables \textsf{horasestudio} y
+\textsf{suspensos} e introducir estos datos.
+
+\item  Calcular la recta de regresión de \textsf{suspensos} sobre
+\textsf{horasestudio} y dibujarla.
+
+\begin{indicacion}{
+\begin{enumerate}
+\item Seleccionar el menú \menu{Analizar->Regresion->Lineal...}.
+
+\item Seleccionar la variable \textsf{suspensos} en el campo
+\texttt{Dependiente} del cuadro de diálogo.
+
+\item Seleccionar la variable \textsf{horasestudio} en el campo
+\texttt{Independiente} del cuadro de diálogo y hacer click sobre
+el botón \texttt{Aceptar}.
+
+\item Para escribir la recta, observaremos en la ventana de
+resultados obtenida, la tabla denominada \texttt{Coeficientes}, y
+en la columna \texttt{B} de los \texttt{Coeficientes no
+estandarizados}, encontramos en la primera fila la
+\textsf{constante} de la recta y en la segunda la
+\texttt{pendiente}.
+
+\item Seleccionar el menú \menu{Gráficos->Dispersión...}, elegir
+la opción \texttt{simple} y  hacer click sobre el botón
+\texttt{Definir}. \item Seleccionar la variable \textsf{suspensos}
+en el campo \texttt{Eje Y} del cuadro de diálogo. \item
+Seleccionar la variable \textsf{horasestudio} en el campo
+\texttt{Eje X} del cuadro de diálogo y hacer click sobre el botón
+\texttt{Aceptar}.
+
+\item Editar el gráfico realizado anteriormente haciendo un doble
+click sobre él.
+
+\item Seleccionar los puntos haciendo click sobre alguno de ellos.
+\item Seleccionar el menú \menu{Gráfico->Añadir elemento de
+gráfico->Linea de ajuste total} (También se podría usar en lugar
+del menu, la barra de herramientas) \item Cerrar el editor de
+gráficos, cerrando la ventana.
+
+\end{enumerate}}
+\end{indicacion}
+
+\item Indicar el coeficiente de regresión de \textsf{suspensos}
+sobre \textsf{horasestudio}. ¿Cómo lo interpretarías?
+
+\item La relación lineal entre estas dos variables, ¿es mejor o peor que la del
+ejercicio anterior? Comentar los resultados.
+\end{enumerate}
+\end{enumerate}
+
+\section{Problemas}
+\begin{enumerate}[leftmargin=*]
+\item  Se determina la pérdida de actividad que experimenta un
+medicamento desde el momento de su fabricación a lo largo del tiempo, obteniéndose
+el siguiente resultado:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline Tiempo (en años) & 1 & 2 & 3 & 4 & 5 \\ \hline Actividad restante (\%) & 96 &
+84 & 70 & 58 & 52 \\ \hline
+\end{tabular}
+\end{center}
+
+Se desea calcular:
+
+\begin{enumerate}
+\item  La relación fundamental (recta de regresión) entre
+actividad restante y tiempo transcurrido.
+
+\item ¿En qué porcentaje disminuye la actividad cada año que pasa?
+\end{enumerate}
+
+\item Al realizar un estudio sobre la dosificación de un cierto
+medicamento, se trataron 6 pacientes con dosis diarias de 2 mg, 7 pacientes con 3 mg
+y otros 7 pacientes con 4 mg. De los pacientes tratados con 2 mg, 2 curaron al cabo
+de 5 días, y 4 al cabo de 6 días. De los pacientes tratados con 3 mg diarios, 2
+curaron al cabo de 3 días, 4 al cabo de 5 días y 1 al cabo de 6 días. Y de los
+pacientes tratados con 4 mg diarios, 5 curaron al cabo de 3 días y 2 al cabo de 5
+días. Se pide:
+
+\begin{enumerate}
+\item  Calcular la recta de regresión del tiempo de curación con respecto a la dosis
+suministrada.
+
+\item  Calcular los coeficientes de regresión. Interpretar los resultados.
+\end{enumerate}
+
+\end{enumerate}

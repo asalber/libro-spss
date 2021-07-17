@@ -1,0 +1,788 @@
+% Version control information:
+%$HeadURL: https://practicas-spss.googlecode.com/svn/trunk/variables_aleatorias_continuas/variables_aleatorias_continuas.tex $
+%$LastChangedDate: 2010-09-27 16:37:11 +0200 (lun, 27 sep 2010) $
+%$LastChangedRevision: 3 $
+%$LastChangedBy: asalber $
+%$Id: variables_aleatorias_continuas.tex 3 2010-09-27 14:37:11Z asalber $
+
+\chapter{Variables Aleatorias Continuas}
+
+\section{Fundamentos teóricos}
+\subsection{Variables aleatorias}
+Se define una \emph{variable aleatoria} asignando a cada resultado del experimento aleatorio un número. Esta asignación puede realizarse de distintas maneras, obteniéndose de esta forma diferentes variables aleatorias. Así, en el lanzamiento de dos monedas podemos considerar el número de caras o el número de cruces. En general, si los resultados del experimento son numéricos, se tomarán dichos números como los valores de la variable, y si los resultados son cualitativos, se hará corresponder a cada modalidad un número arbitrariamente.
+
+Formalmente, una \emph{variable aleatoria} $X$ es una función real
+definida sobre los puntos del espacio muestral $E$ de un experimento
+aleatorio. \[X:E\rightarrow \mathbb{R}\]
+
+De esta manera, la distribución de probabilidad del espacio muestral
+$E$, se transforma en una distribución de probabilidad para los
+valores de $X$.
+
+El conjunto formado por todos los valores distintos que puede tomar la variable aleatoria se llama \emph{Rango} o \emph{Recorrido} de la misma.
+
+Las variables aleatorias pueden ser de dos tipos: discretas o continuas. Una variable es \emph{discreta} cuando sólo puede tomar valores aislados, mientras que es \emph{continua} si puede tomar todos los valores posibles de un intervalo.
+
+\subsection{Variables aleatorias continuas (v.a.c.)}
+Se considera una v.a.c. $X$. En este tipo de variables, a diferencia
+de las discretas, la probabilidad de que la variable tome un valor
+aislado cualquiera es nula, y sólo hablaremos de probabilidades
+asociadas a intervalos.
+
+\subsubsection{Función de densidad}
+La \emph{distribución de probabilidad} de $X$ se suele caracterizar
+mediante una función $f(x)$, conocida como \emph{función de
+densidad}. Formalmente, una función de densidad es una función no
+negativa, integrable en $\mathbb{R}$, que cumple
+\[
+\int_{ - \infty }^\infty  {f(x)dx = 1}
+\]
+
+A partir de esta función, se puede calcular la probabilidad de que
+el valor de la variable pertenezca a un intervalo $[a,b]$, midiendo
+el área encerrada por dicha función y el eje de abscisas entre los
+límites del intervalo, como se observa en la
+figura~\ref{g:probabilidadintervalo}, es decir
+\[
+P(a \le X \le b) = \int_a^b {f(x)dx}
+\]
+
+\begin{figure}[h!]
+  \centering
+  \scalebox{0.8}{\input{variables_aleatorias_continuas/img/calculo_probabilidad_funcion_densidad}} 
+  \caption{En una v.a.c. la probabilidad asociada a un intervalo $[a,b]$, es el área que queda encerrada por
+  la función de densidad y el eje de abscisas entre los límites del intervalo.}\label{g:probabilidadintervalo}
+\end{figure}
+
+
+\subsubsection{Función de distribución}
+Otra forma equivalente de caracterizar la distribución de
+probabilidad de $X$ es mediante otra función $F(x)$, llamada
+\emph{función de distribución}, que asigna a cada $x\in \mathbb{R}$
+la probabilidad de que $X$ tome un valor menor o igual que dicho
+número $x$. Así,
+\[
+F(x) = P(X \le x) = \int_{ - \infty }^x {f(t)dt}
+\]
+
+A partir de la definición anterior es claro que la probabilidad de que la variable tome un valor en el
+intervalo [a,b] puede calcularse a partir de la función de distribución de la siguiente forma:
+\[
+P(a \le X \le b) = \int_a^b {f(x)dx = } \int_{ - \infty }^b {f(x)dx - } \int_{ - \infty }^a {f(x)dx = } F(b) - F(a)
+\]
+
+
+\subsubsection{Estadísticos poblacionales}
+Los parámetros descriptivos más importantes de una v.a.c. $X$ son:
+\begin{description}
+\item [Media o Esperanza]
+\[
+E[X]=\mu  = \int_{ - \infty }^\infty  {xf(x)\,dx}
+\]
+
+\item [Varianza]
+\[
+V[X]=\sigma ^2  = \int_{ - \infty }^\infty {(x - \mu )^2 f(x)\,dx =
+} \int_{ - \infty }^\infty  {x^2  f(x)\,dx - \mu ^2 }
+\]
+
+\item [Desviación típica]
+\[
+D[X]=\sigma  =  + \sqrt {\sigma ^2 }
+\]
+\end{description}
+
+La media es una medida de tendencia central, mientras que la varianza y la desviación típica son medidas de dispersión.
+
+
+\subsubsection{Distribución Uniforme Continua}
+Una v.a.c. $X$ se dice que sigue una \emph{Distribución Uniforme Continua} de parámetros $a$ y $b$, y
+se designa por $X\sim U(a,\ b)$, si su recorrido es el intervalo $[a,b]$ y su función de densidad es 
+\[ 
+f(x) = 
+\begin{cases}
+\frac{1}{b-a} & \mbox{si $a\leq x\leq b$},\\
+0 & \mbox{en el resto}
+\end{cases}
+\]
+
+Esta función es constante en el intervalo $[a,b]$ y nula fuera de él. Se cumple que
+\[
+\mu=\frac{a+b}{2} \qquad \sigma=+\frac{b-a}{\sqrt{12}}.
+\]
+
+\begin{figure}[h!]
+\centering
+\scalebox{0.8}{\input{variables_aleatorias_continuas/img/funcion_densidad_uniforme}} 
+\caption{Función de densidad de una variable aleatoria uniforme continua $U(0,\,1)$.}
+\label{g:uniforme}
+\end{figure}
+
+
+\subsubsection{Distribución Normal}
+
+Una v.a.c. $X$ se dice que sigue una \emph{Distribución Normal} o \emph{Gaussiana} de media $\mu$ y desviación típica $\sigma$, y se designa
+por $X\sim N(\mu,\ \sigma)$, si su recorrido es todo $\mathbb{R}$ y su función de densidad es 
+\[
+f(x) = \frac{1}{{\sigma \sqrt {2\pi } }}e^{- \frac{{(x - \mu )^2 }}{{2\sigma ^2 }}}
+\]
+
+Esta función tiene forma acampanada y es simétrica con respeto a la media $\mu$.
+
+La distribución Normal es la distribución continua más importante, ya que muchos de los fenómenos que aparecen en la naturaleza presentan
+esta distribución. Ello es debido a que, como establece el \emph{Teorema Central del Límite}, cuando los resultados de un experimento están
+influidos por muchas causas independientes que actúan sumando sus efectos, se puede esperar que dichos resultados sigan una distribución
+normal.
+
+La v.a.c normal de media 0 y desviación típica 1, $Z\sim N(0,1)$, se conoce como \emph{variable normal estándar} o \emph{tipificada} y se
+utiliza muy a menudo. Su función de densidad aparece en la figura~\ref{g:funciondensidadnormal} y su función de distribución en la
+figura~\ref{g:funciondistribucionnormal}.
+
+\begin{figure}[h!]
+\centering \subfigure[Función de
+densidad.]{\label{g:funciondensidadnormal}
+\scalebox{0.7}{\input{variables_aleatorias_continuas/img/funcion_densidad_normal_estandar}}}\qquad
+\subfigure[Función de distribución.]{\label{g:funciondistribucionnormal}
+\scalebox{0.7}{\input{variables_aleatorias_continuas/img/funcion_distribucion_normal_estandar}}}
+\caption{Función de densidad y función de distribución de la
+variable aleatoria continua $Z$ Normal de media 0 y desviación
+típica 1 \,\, $Z\sim N(0,1)$} \label{g:graficasvac}
+\end{figure}
+
+\subsubsection{Distribución Chi-cuadrado}
+Si $Z_1,\ldots,Z_n$ son $n$ v.a.c. normales estándar independientes, entonces la variable
+\[ X=Z_1^2+\cdots+Z_n^2\]
+se dice que sigue una distribución \emph{Chi-cuadrado} con $n$
+grados de libertad, y se designa por $X\sim\chi^2(n)$.
+
+\begin{figure}[h!]
+\centering
+\scalebox{0.8}{\input{variables_aleatorias_continuas/img/funcion_densidad_chi_cuadrado}} 
+\caption{Funciones de densidad de variables aleatorias Chi cuadrado de 1, 3 y 10 grados de libertad.}
+\label{g:chicuadrado}
+\end{figure}
+
+Se cumple que
+\begin{align*}
+\mu &= n\\
+\sigma &=+\sqrt{2n}
+\end{align*}
+
+La distribución Chi-cuadrado se utiliza en inferencia estadística para cálculos de intervalos de confianza y contrastes de hipótesis sobre la varianza de la población.
+
+\subsubsection{Distribución $T$ de Student}
+Si $Z$ es una v.a.c. normal estándar y $X$ es una v.a.c chi-cuadrado con $n$ grados de libertad, ambas variables independientes, entonces la variable
+\[
+T=\frac{Z}{\sqrt{X/n}}
+\]
+se dice que sigue una distribución \emph{T de Student} con $n$
+grados de libertad, y se designa por $T\sim T(n)$.
+
+\begin{figure}[h!]
+\centering
+\scalebox{0.8}{\input{variables_aleatorias_continuas/img/funcion_densidad_t_student}} 
+\caption{Funciones de densidad de variables aleatorias t de student de 1, 3 y 10 grados de libertad.}
+\label{g:tstudent}
+\end{figure}
+
+Esta variable es muy parecida a la normal estándar pero un poco
+menos apuntada, y se parece más a ésta a medida que aumentan los
+grados de libertad, de manera que para $n\geq 30$ ambas
+distribuciones se consideran prácticamente iguales. Se cumple que
+\begin{align*}
+\mu &= 0\\
+\sigma &=+\sqrt{n/(n-2)}\quad \textrm{con } n>2
+\end{align*}
+
+La distribución $T$ de Student se utiliza en inferencia estadística para cálculos de intervalos de confianza y contrastes de hipótesis sobre la media de la población.
+
+\subsubsection{Distribución $F$ de Fisher-Snedecor}
+Si $X$ e $Y$ son dos v.a.c chi-cuadrado con $m$ y $n$ grados de libertad respectivamente, ambas variables
+independientes, entonces la variable
+\[
+F=\frac{X/m}{Y/n}
+\]
+se dice que sigue una distribución $F$ de Fisher-Snedecor con $m$ y
+$n$ grados de libertad, y se denota $F\sim F(m,\ n)$.
+
+\begin{figure}[h!]
+\centering
+\scalebox{0.8}{\input{variables_aleatorias_continuas/img/funcion_densidad_f_fisher}} 
+\caption{Funciones de densidad de variables aleatorias F de Fisher-Snedecor.}\label{g:ffisher}
+\end{figure}
+
+\begin{align*}
+\mu &= \frac{n}{n-2}\quad \textrm{con
+} n>2\\
+\sigma &=+\sqrt{\frac{2n^2(m+n-2)}{m(n-2)^2(n-4)}}\quad \textrm{con
+} n>4
+\end{align*}
+
+De la definición se deduce fácilmente que $F(m,\ n)=\dfrac{1}{F(n,\
+m)}$, y si llamamos $F(m,\ n)_p$ al valor que cumple que $P(F(m,\
+n)\leq F(m,\ n)_p)=p$, entonces se verifica
+\[
+F(m,\ n)_p = \frac{1}{F(n,\ m)_{1-p}}
+\]
+
+La distribución $F$ de Fisher-Snedecor se utiliza en inferencia estadística para cálculos de intervalos
+de confianza y contrastes de hipótesis sobre el cociente de varianzas de dos poblaciones, y en análisis de la varianza.
+
+
+\clearpage
+\newpage
+
+
+\section{Ejercicios resueltos}
+
+En los ejercicios prácticos vamos a utilizar las
+siguientes funciones matemáticas, también llamadas operadores, de
+SPSS:
+\begin{description}[leftmargin=*]
+\item[PDF.CHISQ $(c,n)$] que calcula el valor de la función de
+densidad en el valor $c$, de la variable Chi-cuadrado con $n$
+grados de libertad.
+
+\item[PDF.F $(c,m,n)$] que calcula el valor de la función de
+densidad en el valor $c$, de la variable F de Fisher-Snedecor con
+$m$ y $n$ grados de libertad.
+
+\item[PDF.NORMAL $(c,\mu,\sigma)$] que calcula el valor de la función de
+densidad en el valor $c$, de la variable normal de media $\mu$ y
+desviación típica $\sigma$.
+
+\item[PDF.T $(c,n)$] que calcula el valor de la función de
+densidad en el valor $c$ de la variable T de Student con $n$
+grados de libertad.
+
+\item[PDF.UNIFORM $(c,a,b)$] que calcula el valor de la función de
+densidad en el valor $c$ de la variable uniforme U de parámetros
+$a$ y $b$.
+
+\item[CDF.CHISQ $(c,n)$] que calcula el valor de la función de
+distribución en el valor $c$, de la variable Chi-cuadrado con $n$
+grados de libertad.
+
+\item[CDF.F $(c,m,n)$] que calcula el valor de la función de
+distribución en el valor $c$, de la variable F de Fisher-Snedecor
+con $m$ y $n$ grados de libertad.
+
+\item[CDF.NORMAL $(c,\mu,\sigma)$] que calcula el valor de la función de
+distribución en el valor $c$, de la variable normal de media $\mu$
+y desviación típica $\sigma$.
+
+\item[CDF.T $(c,n)$] que calcula el valor de la función de
+distribución en el valor $c$ de la variable T de Student con $n$
+grados de libertad.
+
+\item[CDF.UNIFORM $(c,a,b)$] que calcula el valor de la función de
+distribución en el valor $c$ de la variable uniforme U con
+parámetros $a$ y $b$.
+
+\item[IDF.CHISQ $(c,n)$] que calcula el valor de la variable
+Chi-cuadrado con $n$ grados de libertad, cuando el valor de la
+función de distribución es $c$.
+
+\item[IDF.F $(c,m,n)$] que calcula el valor de la variable F de
+Fisher-Snedecor con $m$ y $n$ grados de libertad, cuando el valor
+de la función de distribución es $c$.
+
+\item[IDF.NORMAL $(c,\mu,\sigma)$] que calcula el valor de la
+variable normal de media $\mu$ y desviación típica $\sigma$,
+cuando el valor de la función de distribución es $c$.
+
+\item[IDF.T $(c,n)$] que calcula el valor de la variable T de
+Student con $n$ grados de libertad, cuando el valor de la función
+de distribución es $c$.
+
+\item[IDF.UNIFORM $(c,a,b)$] que calcula el valor de la variable
+uniforme U de parámetros $a$ y $b$, cuando el valor de la función
+de distribución es $c$.
+\end{description}
+
+\begin{enumerate}[leftmargin=*]
+\item Dada la v.a.c. con distribución uniforme $X \sim U(0,2)$, se pide:
+
+\begin{enumerate}
+\item Definir la variable \variable{X}, dándole valores desde 0 hasta 2, 
+con un incremento de $0.1$.
+
+\item Calcular el valor de la función de densidad en los valores de 
+\variable{X} introducidos.\\ 
+\textbf{Observación}: Los valores de la función de densidad no son las 
+probabilidades de cada valor de la variable. 
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+
+\item Introducir el nombre de la nueva variable que vamos a crear, en 
+este caso \variable{densidad}, dentro del campo 
+\campo{Variable de destino:}.
+
+\item En el cuadro de diálogo \campo{Expresión numérica:}, escribir la 
+función \comando{PDF.UNIFORM(c,mín,máx)} o seleccionar del cuadro de 
+diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Pdf.Uniform}. El primer parámetro de la función 
+\comando{PDF.UNIFORM(c,mín,máx)} puede ser un único valor o el nombre 
+de una variable para calcular todos sus valores a la vez, en cuyo caso 
+se debe introducir la variable \variable{X}.
+El segundo parámetro es el valor mínimo de la variable, en nuestro 
+caso 0 y el último parámetro es el valor máximo de
+la variable, en nuestro caso 2. En este caso al introducir expresiones 
+numéricas, se utilizará el punto como separador de decimales, ya que la 
+coma se usa como separador de parámetros. Por último hacer click sobre 
+el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+\item Representar la función de densidad.
+
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo antiguos\flecha 
+Dispersión/Puntos}.
+\item Seleccionar la opción \opcion{Dispersión simple} y hacer click sobre el 
+botón \boton{Definir}.
+\item Introducir la variable \variable{X} en el cuadro de diálogo 
+\campo{Eje X}.
+\item Introducir la variable creada \variable{densidad} en el cuadro 
+de diálogo \campo{Eje Y} y hacer click sobre el botón \boton{Aceptar}.
+\item Editar el gráfico haciendo doble click sobre el mismo, y como 
+queremos unir los puntos los seleccionaremos todos
+haciendo click sobre uno de ellos.
+\item Hacer click con el botón derecho del ratón y seleccionar 
+\opcion{Añadir Línea de interpolación}
+\item Marcar la opción \opcion{Recto}, hacer click sobre el botón 
+\boton{Cerrar} y por último cerrar el editor de gráficos.
+\end{enumerate}
+\end{indicacion}
+
+\item  Calcular el valor de la función de distribución de dicha variable 
+en los valores de \variable{X} introducidos.
+
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+\item Introducir el nombre de la nueva variable que vamos a crear, 
+en este caso \variable{probacumulada}, dentro del campo 
+\campo{Variable de destino}.
+
+\item En el cuadro de diálogo \campo{Expresión numérica:}, escribir la 
+función \comando{CDF.UNIFORM(c,mín,máx)} o seleccionar del cuadro de 
+diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Cdf.Uniform}. El primer parámetro de la función 
+\comando{CDF.UNIFORM(c,mín,máx)} puede ser un único valor o el nombre 
+de una variable para calcular todos sus valores a la vez, en cuyo caso 
+se debe introducir la variable \variable{X}.
+El segundo parámetro es el valor mínimo de la variable, en nuestro 
+caso 0 y el último parámetro es el valor máximo de
+la variable, en nuestro caso 2. En este caso al introducir expresiones 
+numéricas, se utilizará el punto como separador de decimales, ya que la 
+coma se usa como separador de parámetros. Por último hacer click sobre 
+el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+\item Dibujar la gráfica de la función de distribución.
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo antiguos\flecha 
+Dispersión/Puntos}.
+\item Seleccionar la opción \opcion{Dispersión Simple} y hacer click sobre el 
+botón \boton{Definir}.
+\item Introducir la variable \variable{X} en el cuadro de diálogo 
+\campo{Eje X}.
+\item Introducir la variable creada \variable{probacumulada} en el cuadro 
+de diálogo \campo{Eje Y} y hacer click sobre el botón \boton{Aceptar}.
+\item Editar el gráfico haciendo doble click sobre el mismo, y como 
+queremos unir los puntos los seleccionaremos todos
+haciendo click sobre uno de ellos.
+\item Hacer click con el botón derecho del ratón y seleccionar 
+\opcion{Añadir Línea de interpolación}
+\item Marcar la opción \opcion{Recto}, hacer click sobre el botón 
+\boton{Cerrar} y por último cerrar el editor de gráficos.
+\end{enumerate}
+\end{indicacion}
+\end{enumerate}
+
+
+
+\item Dada la v.a.c. con distribución normal $X\sim N(0,\,1)$, se pide:
+\begin{enumerate}
+\item Crear la variable \variable{X} e introducir en el editor de datos 
+de entre sus infinitos valores (toda la recta real), por ejemplo aquellos 
+que van desde -3 hasta 3, en incrementos de 0.2 (para introducir los 31 
+valores diferentes resulta aconsejable la utilización de un programa de 
+hoja de cálculo como Excel).
+\item  Calcular el valor de la función de densidad en los valores 
+de \variable{X} introducidos.
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+\item Introducir el nombre de la nueva variable que vamos a crear, en 
+este caso \variable{densidad}, dentro del campo \campo{Variable de 
+destino:}.
+
+
+\item En el cuadro de diálogo \campo{Expresión numérica:}, escribir la 
+función \comando{PDF.NORMAL(c,media,desv\_tip)} o seleccionar del cuadro 
+de diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Pdf.Normal}. El primer parámetro de la función 
+\comando{PDF.NORMAL(c,media,desv\_tip)} puede ser un único valor o el 
+nombre de una variable para calcular todos sus valores a la vez, en cuyo 
+caso se debe introducir la variable \variable{X}.
+El segundo parámetro es la media de la variable, en nuestro caso 0, y el 
+último parámetro es la desviación típica, en nuestro caso 1. En este caso 
+al introducir expresiones numéricas, se utilizará el punto como 
+separador de decimales, ya que la coma se usa como separador de 
+parámetros. Por último hacer click sobre el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+
+\item Dibujar la gráfica de la función de densidad de la variable 
+\variable{X}.
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo antiguos\flecha 
+Dispersión/Puntos}.
+\item Seleccionar la opción \opcion{Dispersión simple} y hacer click sobre el 
+botón \boton{Definir}.
+\item Introducir la variable \variable{X} en el cuadro de diálogo 
+\campo{Eje X}.
+\item Introducir la variable creada \variable{densidad} en el cuadro 
+de diálogo \campo{Eje Y} y hacer click sobre el botón \boton{Aceptar}.
+\item Editar el gráfico haciendo doble click sobre el mismo, y como 
+queremos unir los puntos los seleccionaremos todos
+haciendo click sobre uno de ellos.
+\item Hacer click con el botón derecho del ratón y seleccionar 
+\opcion{Añadir Línea de interpolación}
+\item Marcar la opción \opcion{Recto}, hacer click sobre el botón 
+\boton{Cerrar} y por último cerrar el editor de gráficos.
+\end{enumerate}
+\end{indicacion}
+
+
+\item  Calcular el valor de la función de distribución de dicha variable 
+en los valores de \variable{X} introducidos.
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+\item Introducir el nombre de la nueva variable que vamos a crear, en 
+este caso \variable{probacumulada}, dentro del campo 
+\campo{Variable de destino}.
+
+
+\item En el cuadro de diálogo \campo{Expresión numérica:}, escribir la 
+función \comando{CDF.NORMAL(c,media,desv\_tip)} o seleccionar del cuadro 
+de diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Cdf.Normal}. El primer parámetro de la función 
+\comando{CDF.NORMAL(c,media,desv\_tip)} puede ser un único valor o el 
+nombre de una variable para calcular todos sus valores a la vez, en cuyo 
+caso se debe introducir la variable \variable{X}.
+El segundo parámetro es la media de la variable, en nuestro caso 0, y el 
+último parámetro es la desviación típica, en nuestro caso 1. En este caso 
+al introducir expresiones numéricas, se utilizará el punto como 
+separador de decimales, ya que la coma se usa como separador de 
+parámetros. Por último hacer click sobre el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+
+
+\item Dibujar la gráfica de la función de distribución.
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo antiguos\flecha 
+Dispersión/Puntos}.
+\item Seleccionar la opción \opcion{Dispersión simple} y hacer click sobre el 
+botón \boton{Definir}.
+\item Introducir la variable \variable{X} en el cuadro de diálogo 
+\campo{Eje X}.
+\item Introducir la variable creada \variable{probacumulada} en el cuadro 
+de diálogo \campo{Eje Y} y hacer click sobre el botón \boton{Aceptar}.
+\item Editar el gráfico haciendo doble click sobre el mismo, y como 
+queremos unir los puntos los seleccionaremos todos
+haciendo click sobre uno de ellos.
+\item Hacer click con el botón derecho del ratón y seleccionar 
+\opcion{Añadir Línea de interpolación}
+\item Marcar la opción \opcion{Recto}, hacer click sobre el botón 
+\boton{Cerrar} y por último cerrar el editor de gráficos.
+\end{enumerate}
+\end{indicacion}
+
+
+\item Crear la variable \variable{invprobacumu} que, aplicada al valor 
+de la función de distribución (probabilidad
+acumulada), nos devuelva el valor de \variable{X}.
+Interpretar los valores de la variable obtenidos.
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+\item Introducir el nombre de la nueva variable que vamos a crear, en 
+este caso \variable{invprobacumu}, dentro del campo 
+\campo{Variable de destino}.
+
+
+\item En el cuadro de diálogo \campo{Expresión numérica:}, escribir la 
+función \comando{IDF.NORMAL(c,media,desv\_tip)} o seleccionar del cuadro 
+de diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Idf.Normal}. El primer parámetro de la función 
+\comando{IDF.NORMAL(c,media,desv\_tip)} puede ser un único valor o el 
+nombre de una variable para calcular todos sus valores a la vez, en cuyo 
+caso se debe introducir la variable \variable{probacumulada}.
+El segundo parámetro es la media de la variable, en nuestro caso 0, y el 
+último parámetro es la desviación típica, en nuestro caso 1. En este caso 
+al introducir expresiones numéricas, se utilizará el punto como 
+separador de decimales, ya que la coma se usa como separador de 
+parámetros. Por último hacer click sobre el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+
+\item Calcular las siguientes probabilidades:
+\begin{enumerate}
+\item $P(X< -1)$.
+\begin{indicacion}
+Calcular \comando{CDF.NORMAL(-1,0,1)}.
+\end{indicacion}
+
+\item $P(X\leq 2)$.
+\begin{indicacion}
+Calcular \comando{CDF.NORMAL(2,0,1)}.
+\end{indicacion}
+
+\item $P(X> 1.2)$.
+\begin{indicacion}
+Calcular \comando{1-CDF.NORMAL(1.2,0,1)}.
+\end{indicacion}
+
+\item $P(-2\leq X < 2.5)$.
+\begin{indicacion}
+Calcular
+\comando{CDF.NORMAL(2.5,0,1)}-\comando{CDF.NORMAL(-2,0,1)}.
+\end{indicacion}
+
+\item $P(-2.223\leq X \leq 2.581)$.
+\begin{indicacion}
+Calcular
+\comando{CDF.NORMAL(2.581,0,1)}-\comando{CDF.NORMAL(-2.223,0,1)}.
+\end{indicacion}
+
+\item $P(1.002< X < 6.234)$.
+\begin{indicacion}
+Calcular
+\comando{CDF.NORMAL(6.234,0,1)}-\comando{CDF.NORMAL(1.002,0,1)}.
+\end{indicacion}
+
+\end{enumerate}
+
+\begin{indicacion}
+Se podrían calcular todos la valores a la vez definiendo la variable 
+\variable{X}, introduciendo todos los valores que
+necesitamos, en nuestro caso $-1, 2, 1.2, 2.5, -2, 2.581, -2.223, 6.234$ 
+y $1.002$ y creando la variable \variable{probacumulada} utilizando 
+para ello la función \comando{CDF.NORMAL}.
+\end{indicacion}
+
+\item Calcular los valores $x_0$ que cumplan lo siguiente.
+\begin{enumerate}
+\item $P(X\leq x_0)=0.995$.
+\begin{indicacion}
+Calcular \comando{IDF.NORMAL(0.995,0,1)}.
+\end{indicacion}
+
+\item $P(X> x_0)=0.025$.
+\begin{indicacion}
+Calcular \comando{IDF.NORMAL(1-0.025,0,1)}.
+\end{indicacion}
+\end{enumerate}
+
+\begin{indicacion}
+Se podrían calcular todos la valores a la vez definiendo la variable 
+\variable{X}, introduciendo todos los valores que
+necesitamos, en nuestro caso $0.995$ y $1-0.025$ y creando la variable 
+\variable{invprobacumu} utilizando para ello la
+función \comando{IDF.NORMAL}.
+\end{indicacion}
+\end{enumerate}
+
+\item Dada la v.a.c. con distribución normal $X\sim N(2.5\,,\,5)$, se 
+pide:
+\begin{enumerate}
+\item Calcular las siguientes probabilidades:
+\begin{enumerate}
+\item $P(X>4.5)$.
+\begin{indicacion}
+Calcular 1-\comando{CDF.NORMAL(4.5,2.5,5)}.
+\end{indicacion}
+
+\item $P(2.58 \leq X \leq 3.65)$.
+\begin{indicacion}
+Calcular
+\comando{CDF.NORMAL(3.65,2.5,5)}-\comando{CDF.NORMAL(2.58,2.5,5)}.
+\end{indicacion}
+\end{enumerate}
+
+\begin{indicacion}
+Se podría calcular todos la valores a la vez definiendo la variable 
+\variable{X}, introduciendo todos los valores que
+necesitamos, en nuestro caso $4.5, 3.65$ y $2.58$ y creando la variable 
+\variable{probacumulada} utilizando para ello la
+función \comando{CDF.NORMAL}.
+\end{indicacion}
+
+\item Calcular los valores de $x_{0}$ que cumplen:
+\begin{enumerate}
+\item $P(X<x_{0})=0.238$.
+\begin{indicacion}
+Calcular \comando{IDF.NORMAL(0.238,2.5,5)}.
+\end{indicacion}
+
+\item $P(X > x_{0})=0.621$.
+\begin{indicacion}
+Calcular \comando{IDF.NORMAL(1-0.621,2.5,5)}.
+\end{indicacion}
+\end{enumerate}
+\begin{indicacion}
+Se podría calcular todos la valores a la vez definiendo la variable 
+\variable{X}, introduciendo todos los valores que
+necesitamos, en nuestro caso $0.238$ y $1-0.621$ y creando la variable 
+\variable{invprobacumu} utilizando para ello la
+función \comando{IDF.NORMAL}.
+\end{indicacion}
+\end{enumerate}
+
+
+\item Dada la v.a.c. con distribución $T$ de Student $X\sim T(6)$, 
+calcular las siguientes probabilidades:
+\begin{enumerate}
+\item $P(X\leq 0)$
+\begin{indicacion}
+Calcular \comando{CDF.T(0,6)}.
+\end{indicacion}
+
+\item $P(X\leq 1.2)$
+\begin{indicacion}
+Calcular \comando{CDF.T(1.2,6)}.
+\end{indicacion}
+
+\item $P(X>1.2)$
+\begin{indicacion}
+Calcular 1-\comando{CDF.T(1.2,6)}.
+\end{indicacion}
+
+\item $P(0 \leq X \leq 1.2)$
+
+\begin{indicacion}
+Calcular \comando{CDF.T(1.2,6)}-\comando{CDF.T(0,6)}.
+\end{indicacion}
+
+\begin{indicacion}
+Se podría calcular todos la valores a la vez definiendo la variable 
+\variable{X}, introduciendo todos los valores que
+necesitamos, en nuestro caso $0$ y $1.2$ y creando la variable 
+\variable{probabilidad} utilizando para ello la función
+\comando{CDF.T}.
+\end{indicacion}
+\end{enumerate}
+
+
+\item Dada la v.a.c. con distribución Chi-cuadrado $X\sim\chi(5)$ se 
+pide calcular los valores $x_0$ que cumplan lo
+siguiente:
+\begin{enumerate}
+\item $P(X\leq x_0)=0.90$
+\begin{indicacion}
+Calcular \comando{IDF.CHISQ(0.90,5)}.
+\end{indicacion}
+
+\item $P(X\leq x_0)=0.99$
+\begin{indicacion}
+Calcular \comando{IDF.CHISQ(0.99,5)}.
+\end{indicacion}
+
+\item $P(X> x_0)=0.025$
+\begin{indicacion}
+Calcular \comando{IDF.CHISQ(1-0.025,5)}.
+\end{indicacion}
+
+\begin{indicacion}
+Se podría calcular todos la valores a la vez definiendo la variable 
+\textsf{X}, introduciendo todos los valores que
+necesitamos, en nuestro caso $0.90$, $0.99$ y $1-0.025$ y creando 
+la variable \variable{invprobacumu} utilizando para
+ello la función \comando{IDF.CHISQ}.
+\end{indicacion}
+\end{enumerate}
+
+\item Un autobús pasa por una parada cada 15 minutos. Si una persona llega a la parada en un momento cualquiera:
+
+\begin{enumerate}
+
+\item Calcular la probabilidad de que tenga que esperar más de diez minutos al autobús.
+
+\begin{indicacion}
+El tiempo de espera sigue una distribución Uniforme continua de parámetros 0 y 15, es decir, $X\sim U(0,\ 15)$, y la probabilidad de que tenga que esperar más de 10 minutos vendrá dada por 
+1-\comando{CDF.UNIFORM(10,0,15)}.
+\end{indicacion}
+
+\item Calcular la probabilidad de que tenga que esperar entre 7 y 10 minutos
+\begin{indicacion}
+La probabilidad de que tenga que esperar entre 7 y 10 minutos vendrá dada por 
+\comando{CDF.UNIFORM(10,0,15)}-\comando{CDF.UNIFORM(7,0,15)}.
+\end{indicacion}
+
+\end{enumerate}
+
+\item Se sabe que en una población la estatura de sus habitantes varones de entre 20 y 40 años sigue una distribución aproximadamente Normal de media 176 cm. y desviación típica 5 cm. 
+
+\begin{enumerate}
+
+\item Si se elige aleatoriamente un varón de entre 20 y 40 años, ¿cuál es la probabilidad de que mida menos de 165 cm.?
+
+\begin{indicacion}
+La estatura sigue una distribución Normal de media 176 cm. y desviación típica 5 cm., es decir, $X\sim N(176,\ 5)$, y la probabilidad de que mida menos de 165 cm. vendrá dada por \comando{CDF.NORMAL(165,176,5)}.
+\end{indicacion}
+
+\item ¿Cuál será la estatura por encima de la cual estará el 10 \% de los varones? 
+\begin{indicacion}
+Si por encima de la estatura buscada está el 10 \% de los varones, por debajo de dicha estatura estará el 90 \%, por lo que para calcular dicho valor habrá que hacer \comando{IDF.NORMAL(1-0.10,176,5)}.
+\end{indicacion}
+\end{enumerate}
+
+\end{enumerate}
+
+
+\section{Ejercicios propuestos}
+\begin{enumerate}[leftmargin=*]
+\item Hallar las siguientes probabilidades:
+\begin{enumerate}
+\item $P(-2.4\leq Z \leq-1.2)$ si $Z$ es $N(0,1)$
+\item $P(|Z|>1.2)$ si $Z$ es $N(0,1)$
+\item $P(1.3\leq X \leq3.3)$ si $X$ es $N(2,1)$
+\item $P(|X-3|>2)$ si $X$ es $N(3,4)$
+\end{enumerate}
+
+\item Entre los diabéticos, el nivel de glucosa en la sangre en ayunas $X$, puede suponerse de distribución
+aproximadamente normal, con media 106mg/100ml y desviación típica 8mg/100ml.
+\begin{enumerate}
+\item Hallar $P(X\leq120\textrm{mg}/100\textrm{ml})$
+\item ¿Qué porcentaje de diabéticos tendrá niveles entre 90 y 120mg/100ml?
+\item Encontrar un valor que tenga la propiedad de que el 25\% de los diabéticos tenga un nivel de glucosa por debajo de dicho valor.
+\end{enumerate}
+
+\item Se sabe que el nivel de colesterol en varones de más de 30 años sigue una distribución normal, de media 220 y
+desviación típica 30.
+Realizado un estudio sobre 20000 varones mayores de 30 años,
+\begin{enumerate}
+\item ¿Cuántos se espera que tengan su nivel de colesterol entre 210 y 240?
+\item ¿Cuántos se espera que tengan su nivel de colesterol por encima de 250?
+\item ¿Cuál será el nivel de colesterol, por encima del cual se espera que esté el 20\% de la población?
+\end{enumerate}
+\end{enumerate}

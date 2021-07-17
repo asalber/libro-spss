@@ -1,0 +1,305 @@
+\documentclass[a4paper]{article}
+\usepackage{svn-multi}
+% Version control information:
+\svnidlong
+{$HeadURL: http://172.20.100.115/svn/maths/practicas_spss/fusion_archivos/fusion_archivos.tex $}
+{$LastChangedDate: 2007-10-31 19:03:14 +0100 (mié, 31 oct 2007) $}
+{$LastChangedRevision: 2 $}
+{$LastChangedBy: alf $}
+\svnid{$Id: fusion_archivos.tex 2 2007-10-31 18:03:14Z alf $}
+\pdfinfo{/CreationDate (D:\svnpdfdate)}
+\svnRegisterAuthor{alf}{Alfredo Sánchez Alberca}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{macros}
+\usepackage[dvips]{graphicx}
+\usepackage{enumitem}
+\usepackage{subfigure}
+\usepackage[small,bf]{caption2}
+\usepackage[top=3cm, bottom=3cm, left=2.54cm, right=2.54cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{\textsc{Universidad San Pablo CEU}} \rhead{\textsl{\textsf{Departamento de Métodos Cuantitativos}}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\floatpagefraction}{.8}
+\renewcommand{\textfraction}{.1}
+\setcaptionwidth{\textwidth} \addtolength{\captionwidth}{-40pt}
+\captionstyle{indent} \setlength\captionindent{\parindent}
+
+\makeatletter
+\let\savees@listquot\es@listquot
+\def\es@listquot{\protect\savees@listquot}
+\makeatletter
+
+\begin{document}
+\sloppy
+
+\practica{Práctica de Estadística con SPSS}{Manipulación de datos
+y ficheros}
+
+\bigskip
+\section*{Ejercicio}
+
+Se ha diseñado un ensayo clínico aleatorizado, doble-ciego y
+controlado con placebo, para estudiar el efecto de dos
+alternativas terapéuticas en el control de la hipertensión
+arterial. Se han reclutado 100 pacientes hipertensos y estos han
+sido distribuidos aleatoriamente en tres grupos de tratamiento. A
+uno de los grupos (control) se le administró un placebo, a otro
+grupo se le administró un inhibidor de la enzima conversora de la
+angiotensina (IECA) y al otro un tratamiento combinado de un
+diurético y un Antagonista del Calcio. Las variables respuesta
+final fueron las presiones arteriales sistólica y diastólica.
+
+
+Los datos con las claves de aleatorización han sido introducidos
+en una base de datos que reside en la central de aleatorización,
+mientras que los datos clínicos han sido archivados en dos
+archivos distintos, uno para cada uno de los dos centros
+participantes en el estudio.
+
+Las variables almacenadas en estos archivos clínicos son las
+siguientes:
+
+
+
+
+\begin{itemize}
+    \item CLAVE Clave de aleatorización
+    \item NOMBRE  Iniciales del paciente
+    \item F\_NACIM  Fecha de Nacimiento
+    \item F\_INCLUS Fecha de inclusión
+    \item SEXO  Sexo (0: Hombre 1: Mujer)
+    \item ALTURA Altura en cm.
+    \item PESO  Peso en Kg.
+    \item PAD\_INI  Presión diastólica basal (inicial)
+    \item PAD\_FIN  Presión diastólica final
+    \item PAS\_INI Presión sistólica basal (inicial)
+    \item PAS\_FIN  Presión sistólica final
+\end{itemize}
+
+El archivo de claves de aleatorización contiene sólo dos
+variables.
+
+\begin{itemize}
+    \item CLAVE Clave de aleatorización
+    \item FARMACO Fármaco administrado (0: Placebo, 1: IECA,  2:Ca Antagonista + diurético)
+\end{itemize}
+
+Se pide:
+
+\begin{enumerate}
+\item Leer los datos del centro con 10 pacientes, incluidos en el
+archivo \textsf{Hipertensos HA.xls}, este hospital trabaja con la
+hoja de cálculo Excel.
+
+\begin{indicacion}{
+Desplegar el menú \menu{Archivo\flecha Abrir\flecha Datos}, e ir hasta el
+directorio que contiene el archivo \textsf{Hipertensos HA.xls},
+escogiendo como tipo de archivo el formato de Excel. Una vez tenemos
+delante el nombre del archivo, para abrirlo será suficiente con un
+doble clik, pero teniendo en cuenta que hay que activar la opción
+\opcion{Leer nombre de variables} si queremos que utilice la primera
+fila del archivo de Excel para dar nombre a las variables en el
+archivo de datos de SPSS.}
+\end{indicacion}
+
+\item Añadir a estos, los datos de los pacientes 11 al 100,
+incluidos en el archivo \textsf{Hipertensos HB} y guardar los datos
+como \textsf{Hipertensos totales}.
+
+
+\begin{indicacion}{
+\begin{enumerate}
+\item Teniendo en cuenta que lo que pretendemos es añadir nuevos casos
+a un archivo de datos ya abierto, el menú a utilizar es
+\menu{Datos\flecha Fundir archivos\flecha Añadir casos}. Después activamos la
+opción \opcion{Un archivo de datos de SPSS externo}, y con el botón
+\boton{Examinar} accedemos hasta la carpeta que contenga el archivo
+\textsf{Hipertensos HB}. Una vez seleccionado, utilizamos el botón
+\boton{Continuar}, y posteriormente el botón \boton{Aceptar} en el
+siguiente cuadro de diálogo que aparece.
+\item Una vez generado el archivo de datos, para guardarlo podemos
+utilizar el menú \menu{Archivo\flecha Guardar como}.
+\end{enumerate}
+}
+\end{indicacion}
+
+\item Fusionar los datos clínicos con las claves de
+aleatorización. El fichero con las clave se denomina
+\textsf{Claves aleatorizacion}. Grabar el archivo resultante con
+el nombre \textsf{Hipertensos Datos Claves}
+
+\begin{indicacion}{
+De forma similar al apartado anterior pero teniendo en cuenta que
+ahora lo que pretendemos es añadir variables. Para ello:
+\menu{Datos\flecha Fundir archivos\flecha Añadir variables}. Para acceder
+después hasta el archivo \textsf{Claves aleatorizacion}, y
+posteriormente vamos aceptando en todos los cuadros de diálogo que
+aparecen. Una vez generado, guardamos el nuevo archivo de datos y
+claves: menú \menu{Archivo\flecha Guardar como}. }
+\end{indicacion}
+
+\item Crear un archivo para cada uno de los grupos de tratamiento.
+Denominar a estos archivos \textsf{Hipertensos placebo},
+\textsf{Hipertensos IECA} e \textsf{Hipertensos Ca}
+respectivamente.
+
+\begin{indicacion}{
+Se podría lograr el mismo resultado de múltiples maneras. Por
+ejemplo:
+\begin{enumerate}
+\item Segmentando el archivo mediante el menú \menu{Datos\flecha Segmentar
+archivo}, y \opcion{Organizar los resultados por grupos} basados en
+la variable \variable{farmaco}. Una vez segmentado el archivo,
+podemos marcar los casos correspondientes a cada uno de los fármacos
+y hacer un cortar y pegar en un nuevo archivo específico para cada
+fármaco.
+\item También podemos generar los nuevos archivos utilizando el
+sistema de filtros de SPSS. Para ello el menú a utilizar es
+\menu{Datos\flecha Seleccionar Casos}, con la opción \opcion{Si se
+satisface la condición}, botón \boton{Si}, y entramos en un cuadro
+de diálogo en el que damos forma a la condición, que en primera
+instancia será \variable{farmaco=1}, para volver al cuadro de
+diálogo anterior y escoger la opción \opcion{Eliminar casos no
+seleccionados}. Con ello nos quedará un archivo de datos que tan
+sólo contiene los casos correspondientes al primer fármaco, y
+podemos hacer un \menu{Archivo\flecha Guardar como} para ponerle el nombre
+adecuado. Igualmente, repetiríamos el proceso para los otros dos
+fármacos.
+\end{enumerate}}
+\end{indicacion}
+
+\item Calcular, para cada paciente, la edad en años el día de la
+incorporación al estudio (redondeando al entero más próximo).
+Denominar la nueva variable \variable{edad} y etiquetarla
+correspondientemente.
+
+\begin{indicacion}{
+Internamente SPSS trabaja con las variables en formato fecha
+almacenando el número de segundos transcurridos desde el comienzo
+del Calendario Gregoriano en el año 1582 hasta la fecha que
+introducimos. Por lo tanto, si restamos dos variables en formato
+fecha, no nos da el número de años transcurridos entre una y otra,
+sino el número de segundos. Por ello, la nueva variable obtenida
+como resultado de la resta hay que dividirla entre el número de
+segundos que tiene un año a razón de 3600 segundos la hora, 24 horas
+el día, y $365.25$ días el año, aproximadamente. Teniendo en cuenta
+lo anterior, el proceso a utilizar es: Menú
+\menu{Transformar\flecha Calcular variable}, opción \opcion{Variable de
+destino}, y damos nombre a la variable \variable{edad}. Como
+expresión numérica para su cálculo introducimos:
+
+\[
+({\rm F\_INCLUS - F\_NACIM})/(365.25 \times 24 \times 3600)
+\]
+
+}
+\end{indicacion}
+
+\item Recodificar dicha edad de forma que la nueva variable, de
+nombre \variable{grupoedad}, tome los siguientes valores y etiquetas
+de valor:
+
+\begin{center}
+
+\begin{tabular}{|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Edad en años} & \multicolumn{1}{c|}{Grupo edad} & \multicolumn{1}{c|}{Etiqueta} \\
+\hline
+\multicolumn{1}{|c|}{Menores de 37} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{Menores de 37} \\
+\hline
+\multicolumn{1}{|c|}{De 37 a 44} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{De 37 a 44} \\
+\hline
+\multicolumn{1}{|c|}{De 45 a 52} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{De 45 a 52} \\
+\hline
+\multicolumn{1}{|c|}{Mayores de 52} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{Mayores de 52} \\
+\hline
+\end{tabular}
+
+\end{center}
+
+\begin{indicacion}{
+Para recodificar una variable, se utiliza el proceso ya explicado en
+la práctica de Introducción a SPSS, con el menú
+\menu{Transformar\flecha Recodificar en distintas variables}, escogiendo
+la \opcion{Variable de entrada}, dando nombre a la \opcion{Variable
+de resultado}, utilizando el botón \boton{Cambiar}, y posteriormente
+el botón \boton{Valores antiguos y nuevos} para delimitar las
+categorías de la nueva variable.
+
+}
+\end{indicacion}
+
+
+
+
+\item Calcular, para cada paciente, el índice de masa corporal (se
+obtiene dividiendo el peso, expresado en kg, entre la altura,
+expresada en m, elevada al cuadrado) y almacenar el resultado en la
+variable \variable{masacorp}.
+
+\begin{indicacion}{
+Con el menú \menu{Transformar\flecha Calcular variable}, escogiendo como
+variable de destino \variable{masacorp}, y como expresión numérica
+la indicada en el enunciado.
+
+}
+\end{indicacion}
+
+\item Recodificar dicho índice de masa corporal, de forma que la
+nueva variable, de nombre \variable{obesidad}, tome los siguientes
+valores y etiquetas de valor según el sexo del paciente.
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Sexo} & \multicolumn{1}{c|}{Masacorp} & \multicolumn{1}{c|}{Obesidad} & \multicolumn{1}{c|}{Etiqueta} \\
+\hline
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{Menor de 21} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{Desnutrido} \\
+\cline{2-4}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{De 21,01 a 26,94} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{Normal} \\
+\cline{2-4}
+\multicolumn{1}{|c|}{0} & \multicolumn{1}{c|}{De 26,95 a 32,94} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{Sobrepeso} \\
+\cline{2-4}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{De 32,95 a 43,94} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{Obeso} \\
+\cline{2-4}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{Mayor que 43,95} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{Muy obeso} \\
+\hline
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{Menor de 19} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{Desnutrido} \\
+\cline{2-4}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{De 19,01 a 24,94} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{Normal} \\
+\cline{2-4}
+\multicolumn{1}{|c|}{1} & \multicolumn{1}{c|}{De 24,95 a 29,94} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{Sobrepeso} \\
+\cline{2-4}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{De 29,95 a 39,94} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{Obeso} \\
+\cline{2-4}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{Mayor que 39,95} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{Muy obeso} \\
+\hline
+\end{tabular}
+
+\begin{indicacion}{
+Se trata de un problema de recodificación, muy parecido al explicado
+en la indicación del punto 6, con la única novedad de que ahora hay
+que hacer una doble recodificación: por un lado para hombres y por
+el otro para mujeres. Para ello, después de escoger las variables de
+entrada y de resultado, haciendo uso del botón condicional
+\boton{Si} podemos escoger únicamente los casos que cumplen la
+condición impuesta por la variable \variable{Sexo}; es decir, con la
+condición \variable{Sexo=0}, recodificamos en primera instancia el
+índice de masa corporal de los hombres, y con \variable{Sexo=1}
+recodificamos el de las mujeres.
+
+}
+\end{indicacion}
+
+\end{center}
+
+
+
+\end{enumerate}
+
+\end{document}

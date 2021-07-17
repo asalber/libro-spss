@@ -1,0 +1,262 @@
+% Version control information:
+%$HeadURL: https://practicas-spss.googlecode.com/svn/trunk/regresion_no_lineal/regresion_no_lineal.tex $
+%$LastChangedDate: 2010-09-27 16:37:11 +0200 (lun, 27 sep 2010) $
+%$LastChangedRevision: 3 $
+%$LastChangedBy: asalber $
+%$Id: regresion_no_lineal.tex 3 2010-09-27 14:37:11Z asalber $
+
+\chapter{Regresión No Lineal}
+
+\section{Fundamentos teóricos}
+La regresión simple tiene por objeto la construcción de un modelo
+funcional $y=f(x)$ que explique lo mejor posible la relación entre
+dos variables $Y$ (variable dependiente) y $X$ (variable
+independiente) medidas en una misma muestra.
+
+Ya vimos que, dependiendo de la forma de esta función, existen muchos tipos de regresión simple. Entre los más habituales están:
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+ Familia de curvas       &     Ecuación genérica      \\
+\hline\hline
+ Lineal                  &          $y=b_0+b_1x$          \\
+\hline
+ Cuadrática              &       $y=b_0+b_1x+b_2x^2$        \\
+\hline
+ Cúbica & $y=b_0+b_1x+b_2x^2+b_3x^3$ \\
+\hline
+ Potencia               &       $y=b_0\cdot x^{b_1}$       \\
+\hline
+ Exponencial             &     $y=b_0\cdot e^{b_1x}$      \\
+\hline
+ Logarítmica             &       $y=b_0+b_1\ln x$        \\
+\hline
+Inversa             &       $y=b_0+\frac{b_1}{x}$        \\
+\hline
+Compuesto              &       $y=b_0b_1^x$        \\
+\hline
+Crecimiento             &       $y= e^{b_0 + b_1x}$        \\
+\hline
+G (Curva-S)             &       $y= e^{b_0 +\frac{b_1}{x} }$        \\
+\hline
+\end{tabular}
+\end{center}
+
+La elección de un tipo de modelo u otro suele hacerse según la forma
+de la nube de puntos del diagrama de dispersión. A veces estará
+claro qué tipo de modelo se debe construir, tal y como ocurre en los
+diagramas de dispersión de la figura~\ref{g:tiposrelaciones2}. Pero
+otras veces no estará tan claro, y en estas ocasiones, lo normal es
+ajustar los dos o tres modelos que nos parezcan más convincentes,
+para luego quedarnos con el que mejor explique la relación entre $Y$
+y $X$, mirando el coeficiente de determinación\footnote{Ver la
+práctica de correlación.} de cada modelo.
+
+\begin{figure}[h!]
+\centering 
+\subfigure[Sin relación.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_sin_relacion}}}\qquad
+\subfigure[Relación lineal.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_lineal}}}\qquad
+\subfigure[Relación polinómica.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_parabolica}}}\\
+\subfigure[Relación exponencial.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_exponencial}}}\qquad
+\subfigure[Relación logarítmica.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_logaritmica}}}\qquad
+\subfigure[Relación inversa.]{\scalebox{0.5}{\input{regresion_lineal_simple/img/diagrama_dispersion_relacion_inversa}}}\\
+\caption{Diagramas de dispersión correspondientes a distintos tipos de relaciones
+entre variables.} \label{g:tiposrelaciones2}
+\end{figure}
+
+Ya vimos en la práctica sobre regresión lineal simple, cómo
+construir rectas de regresión. En el caso de que optemos por ajustar
+un modelo no lineal, la construcción del mismo puede realizarse
+siguiendo los mismos pasos que en el caso lineal. Básicamente se
+trata de determinar los parámetros del modelo que minimizan la suma
+de los cuadrados de los residuos en $Y$. En los modelos
+potencia y exponencial, el sistema aplica transformaciones
+logarítmicas a las variables y después ajusta un modelo lineal a los
+datos transformados. En el modelo inverso, el sistema sustituye la
+variable dependiente por su inverso antes de estimar la ecuación
+de regresión.
+
+\clearpage
+\newpage
+
+
+\section{Ejercicios resueltos}
+\begin{enumerate}[leftmargin=*]
+\item En un experimento se ha medido el número de bacterias por unidad de volumen en un cultivo, cada hora transcurrida, obteniendo los siguientes resultados:
+\begin{center}
+\begin{tabular}{c|ccccccccc}
+Horas & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8  \\
+\hline
+Nº Bacterias & 25 & 32 & 47 & 65 & 92 & 132 & 190 & 275 & 362
+\end{tabular}
+\end{center}
+
+Se pide:
+\begin{enumerate}
+\item  Crear las variables \variable{horas} y \variable{bacterias} e introducir estos datos.
+
+\item  Dibujar el diagrama de dispersión correspondiente. En vista del diagrama, ¿qué tipo de modelo crees que
+explicará mejor la relación entre el número de bacterias y el tiempo transcurrido?
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo antiguos\flecha 
+Dispersión/Puntos...}, elegir la opción \opcion{Dispersión simple} y  
+hacer click sobre el botón \boton{Definir}.
+\item Seleccionar la variable \variable{bacterias} en el 
+campo \campo{Eje Y} del cuadro de diálogo. 
+\item Seleccionar la variable \variable{horas} en el campo \campo{Eje X} 
+del cuadro de diálogo y hacer click sobre el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+\item Hacer una comparativa de los distintos modelos de regresión en función del coeficiente de determinación. ¿Qué
+tipo de modelo es el mejor?
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Analizar\flecha Regresión\flecha Estimación curvilínea...}.
+\item Seleccionar la variable \variable{bacterias} en el campo \campo{Dependientes} del cuadro de diálogo.
+\item Seleccionar la variable \variable{horas} en el campo  \campo{Independiente/variable} del cuadro de diálogo.
+\item Desmarcar la opción \opcion{Representar los modelos}.
+\item Marcar las opciones lineal, cuadrático, cúbico, exponencial y logarítmico, y hacer click sobre el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+\item En  vista de lo anterior, calcular el modelo de regresión que 
+mejor explique la relación entre \variable{bacterias} y \variable{horas}.
+\begin{indicacion}Utilizar los coeficientes que aparecen en el punto 
+anterior y la tabla de la parte de fundamentos teóricos.
+\end{indicacion}
+
+\item Según el modelo anterior, ¿cuántas bacterias habrá al cabo de 3 
+horas y media del inicio del cultivo? ¿Y al cabo
+de 10 horas? ¿Son fiables estas predicciones?
+\begin{indicacion}
+\begin{enumerate}
+\item Crear una nueva variable \variable{valores} e introducir 
+los valores de las horas para los que queremos predecir las bacterias.
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable...}.
+\item Introducir el nombre de la nueva variable 
+\variable{prediccion} en el campo \campo{Variable de destino}
+del cuadro de diálogo.
+\item Introducir la ecuación del mejor modelo en el campo 
+\campo{Expresión numérica}, utilizando los coeficientes obtenidos 
+anteriormente y la variable \variable{valores} y hacer click sobre 
+el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+\item Dar una predicción lo más fiable posible del tiempo que tendría 
+que transcurrir para que en el cultivo hubiese 100 bacterias.
+\begin{indicacion}
+Repetir los pasos del apartado anterior introduciendo la variable 
+\variable{horas} en el campo \campo{Dependientes} y
+la variable \variable{bacterias} en el campo 
+\campo{Independiente/Variables}.
+\end{indicacion}
+\end{enumerate}
+
+\item Se han medido dos variables $S$ y $T$ en 10 individuos, 
+obteniéndose los siguientes resultados:
+\begin{center}
+$(-1.5 \,,\, 2.25)$\,,\, $(0.8 \,,\, 0.64)$\,,\, $(-0.2 \,,\, 0.04)$\,,\, $(-0.8 \,,\, 0.64)$\,,\, $(0.4 \,,\, 0.16)$\,,\,\\
+$(0.2 \,,\, 0.04)$\,,\, $(-2.1 \,,\, 4.41)$\,,\, $(-0.4 \,,\, 0.16)$\,,\, $(1.5 \,,\, 2.25)$\,,\, $(2.1 \,,\, 4.41)$.
+\end{center}
+Se pide:
+\begin{enumerate}
+\item  Crear las variables \variable{S} y \variable{T} e introducir estos datos.
+\item Calcular la recta de regresión de \variable{T} sobre \variable{S}. 
+Dibujar dicha recta sobre el diagrama de dispersión. ¿Podemos afirmar 
+que $S$ y $T$ son independientes?
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Analizar\flecha Regresión\flecha Lineales...}.
+\item Seleccionar la variable \variable{T} en el campo 
+\variable{Dependientes} del cuadro de diálogo.
+\item Seleccionar la variable \variable{S} en el campo 
+\campo{Independientes} del cuadro de diálogo y hacer click sobre
+el botón \boton{Aceptar}.
+\item Para escribir la ecuación de la recta, observaremos en la ventana 
+de resultados obtenida, la tabla denominada
+\resultado{Coeficientes}, y en la columna \resultado{B} de los 
+\resultado{Coeficientes no estandarizados}, encontramos en la primera 
+fila la \resultado{constante} de la recta y en la segunda 
+la \resultado{pendiente}.
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo antiguos\flecha 
+Dispersión/Puntos...}, elegir la opción \opcion{Dispersión simple} y  
+hacer click sobre el botón \boton{Definir}.
+\item Seleccionar la variable \variable{T} en el campo \campo{Eje Y} 
+del cuadro de diálogo. 
+\item Seleccionar la variable \variable{S} en el campo \campo{Eje X} 
+del cuadro de diálogo y hacer click sobre el botón \boton{Aceptar}.
+\item Editar el gráfico realizado anteriormente haciendo un doble 
+click sobre él.
+\item Seleccionar los puntos haciendo click sobre alguno de ellos.
+\item Seleccionar el menú \menu{Elementos\flecha Linea de ajuste total} 
+(También se podría usar en lugar del menu, la barra de herramientas) 
+\item Cerrar la ventana \texttt{Propiedades}.
+\item Cerrar el editor de gráficos, cerrando la ventana.
+\end{enumerate}
+\end{indicacion}
+
+\item Hacer una comparativa de los distintos modelos de regresión en 
+función del coeficiente de determinación. ¿Qué
+tipo de relación existe entre $T$ y $S$?
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Analizar\flecha Regresión\flecha Estimación curvilínea...}.
+\item Seleccionar la variable \variable{T} en el campo \campo{Dependientes} 
+del cuadro de diálogo.
+\item Seleccionar la variable \variable{S} en el campo 
+\texttt{Independiente/variable} del cuadro de diálogo.
+\item Desmarcar la opción \opcion{Representar los modelos}.
+\item Marcar las opciones lineal, cuadrático, cúbico y exponencial y hacer click sobre el botón \boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+\item En vista de lo anterior, ajustar el modelo de regresión más apropiado.
+\begin{indicacion}
+Utilizar los coeficientes que aparecen en el punto anterior y la tabla 
+de la parte de fundamentos teóricos.
+\end{indicacion}
+\end{enumerate}
+
+\end{enumerate}
+
+
+\section{Ejercicios propuestos}
+\begin{enumerate}[leftmargin=*]
+\item En un centro dietético se está probando una nueva dieta de adelgazamiento en una
+muestra de 12 individuos. Para cada uno de ellos se ha medido el número de días que
+lleva con la dieta y el número de kilos perdidos desde entonces, obteniéndose los
+siguientes resultados:
+\begin{center}
+(33 , 3.9), (51 , 5.9), (30 , 3.2), (55 , 6.0), (38 , 4.9), (62 , 6.2),\\
+(35 , 4.5), (60 , 6.1), (44 , 5.6), (69 , 6.2), (47 , 5.8), (40 , 5.3)
+\end{center}
+Se pide:
+\begin{enumerate}
+  \item Dibujar el diagrama de dispersión. Según la nube de puntos, ¿qué tipo de
+  modelo explicaría mejor la relación entre los kilos perdidos y los días de dieta?
+  \item Construir el modelo de regresión que mejor explique la relación entre los kilos perdidos  y los días de dieta.
+  \item Utilizar el modelo construido para predecir el número de kilos perdidos tras 40
+  días de dieta y tras 100 días. ¿Son fiables estas predicciones?
+\end{enumerate}
+
+\item La concentración de un fármaco en sangre, $C$ en mg/dl, es función del tiempo, $t$ en horas, y viene dada por la
+siguiente tabla: 
+\[
+\begin{array}{|l|r|r|r|r|r|r|r|}
+\hline
+\text{t} & 2 & 3 & 4 & 5 & 6 & 7 & 8\\
+\hline
+\text{C} & 25 & 36 & 48 & 64 & 86 & 114 & 168\\
+\hline
+\end{array}
+\]
+Se pide: 
+\begin{enumerate}
+\item Según el modelo exponencial, ¿qué concentración de fármaco habría a las $4.8$ horas? ¿Es fiable la predicción?
+Justificar adecuadamente la respuesta.
+\item Según el modelo logarítmico, ¿qué tiempo debe pasar para que la concentración sea de 100 mg/dl?
+\end{enumerate}
+
+\end{enumerate}

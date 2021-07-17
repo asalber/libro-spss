@@ -1,0 +1,19 @@
+% SVN Keyword cache
+
+% Global values:
+\def \svnrev {3}
+\def \svndate {2010-09-27 16:37:11 +0200 (lun, 27 sep 2010)}
+\def \svnauthor {asalber}
+\def \svnyear {2010}
+\def \svnmonth {09}
+\def \svnday {27}
+\def \svnhour {16}
+\def \svnminute {37}
+\def \svnsecond {11}
+\def \svntimezonehour {+02}
+\def \svntimezoneminute {00}
+\svn@gdefverb \svnurl {https://practicas-spss.googlecode.com/svn/trunk/practicas_spss.tex}
+\svn@gdefverb \svnfname {practicas_spss.tex}
+
+
+

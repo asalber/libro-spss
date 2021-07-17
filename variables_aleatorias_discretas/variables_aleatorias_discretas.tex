@@ -1,0 +1,656 @@
+% Version control information:
+%$HeadURL: https://practicas-spss.googlecode.com/svn/trunk/variables_aleatorias_discretas/variables_aleatorias_discretas.tex $
+%$LastChangedDate: 2010-09-27 16:37:11 +0200 (lun, 27 sep 2010) $
+%$LastChangedRevision: 3 $
+%$LastChangedBy: asalber $
+%$Id: variables_aleatorias_discretas.tex 3 2010-09-27 14:37:11Z asalber $
+
+\chapter{Variables Aleatorias Discretas}
+
+\section{Fundamentos teóricos}
+\subsection{Variables aleatorias}
+Se define una \emph{variable aleatoria} asignando a cada resultado del experimento aleatorio un número. Esta asignación
+puede realizarse de distintas maneras, obteniéndose de esta forma diferentes variables aleatorias. Así, en el lanzamiento
+de dos monedas podemos considerar el número de caras o el número de cruces. En general, si los resultados del experimento
+son numéricos, se tomarán dichos números como los valores de la variable, y si los resultados son cualitativos, se hará
+corresponder a cada modalidad un número arbitrariamente.
+
+Formalmente, una \emph{variable aleatoria} $X$ es una función real definida sobre los puntos del espacio muestral $E$ de
+un experimento aleatorio. \[ X:E\rightarrow \mathbb{R}\]
+
+De esta manera, la distribución de probabilidad del espacio muestral $E$, se transforma en una distribución de
+probabilidad para los valores de $X$.
+
+El conjunto formado por todos los valores distintos que puede tomar la variable aleatoria se llama \emph{Rango} o
+\emph{Recorrido} de la misma.
+
+Las variables aleatorias pueden ser de dos tipos: discretas o continuas. Una variable es \emph{discreta} cuando sólo
+puede tomar valores aislados, mientras que es \emph{continua} si puede tomar todos los valores posibles de un intervalo.
+
+\subsection{Variables aleatorias discretas (v.a.d.)}
+Se considera una v.a.d. $X$ que puede tomar los valores $x_i$, $i=1,2,...,n$.
+
+\subsubsection{Función de probabilidad}
+La \emph{distribución de probabilidad} de $X$ se suele caracterizar mediante una función $f(x)$, conocida como \emph{función de probabilidad}, que asigna a cada valor de la variable su probabilidad. Esto es
+\[f(x_i)=P(X=x_i),\ i=1,..,n\]
+verificándose que
+\[\sum_{i=1}^{n} f(x_i)=1\]
+
+\subsubsection{Función de distribución}
+Otra forma equivalente de caracterizar la distribución de probabilidad de $X$ es mediante otra función $F(x)$, llamada \emph{función de distribución}, que asigna a cada $x\in \mathbb{R}$ la probabilidad de que $X$ tome un valor menor o igual que dicho número $x$. Así,
+
+\[
+F(x) = P(X \le x) = \sum\limits_{x_i  \le x} {f(x_i)}
+\]
+
+Tanto la función de probabilidad como la función de distribución pueden representarse de forma gráfica, tal y como se muestra en la figura \ref{g:graficasvad}.
+
+\begin{figure}[h!]
+\centering \subfigure[Función de probabilidad.]{
+\scalebox{0.6}{\input{variables_aleatorias_discretas/img/funcion_probabilidad_lanzamiento_2_monedas}}}\qquad
+\subfigure[Función de distribución.]{
+\scalebox{0.6}{\input{variables_aleatorias_discretas/img/funcion_distribucion_lanzamiento_2_monedas}}}
+\caption{Función de probabilidad y función de distribución de la variable aleatoria $X$ que mide el número de caras obtenido en el lanzamiento de dos monedas.} \label{g:graficasvad}
+\end{figure}
+
+\subsubsection{Estadísticos poblacionales}
+Los parámetros descriptivos más importantes de una v.a.d. $X$ son:
+\begin{description}
+\item [Media o Esperanza]
+\[
+E[X]=\mu  = \sum\limits_{i = 1}^n {x_i f(x_i )}
+\]
+
+\item [Varianza]
+\[
+V[X]=\sigma ^2  = \sum\limits_{i = 1}^n {(x_i  - \mu )^2 f(x_i ) = }
+\sum\limits_{i = 1}^n {x_i ^2 f(x_i ) - \mu ^2 }
+\]
+
+\item [Desviación típica]
+\[
+D[X]=\sigma  =  + \sqrt {\sigma ^2 }
+\]
+\end{description}
+
+La media es una medida de tendencia central, mientras que la
+varianza y la desviación típica son medidas de dispersión.
+
+Entre las v.a.d. cabe destacar las denominadas \emph{Binomial} y de \emph{Poisson}.
+
+\subsubsection{Variable Binomial}
+
+Se considera un experimento aleatorio en el que puede ocurrir el suceso $A$ o su contrario $\overline{A}$,
+con probabilidades $p$ y $1-p$ respectivamente.
+
+Si se realiza el experimento anterior $n$ veces, la v.a.d. $X$ que
+recoge el número de veces que ha ocurrido el suceso $A$, se denomina
+\emph{Variable Binomial} y se designa por $X\sim B(n,\ p)$.
+
+El recorrido de la variable $X$ es $\{0,1,...,n\}$ y su función de
+probabilidad viene dada por
+\[
+f(x)= \binom{n}{x} p^x  \left( {1 - p} \right)^{n - x}
+\]
+cuya gráfica se puede apreciar en la figura~\ref{g:binomial}.
+
+\begin{figure}[h!]
+  \centering
+  \scalebox{0.8}{\input{variables_aleatorias_discretas/img/funcion_probabilidad_binomial}} 
+  \caption{Función de probabilidad de una variable aleatoria binomial de 10 repeticiones y probabilidad de éxito 0.5}\label{g:binomial}
+\end{figure}
+
+A partir de la expresión anterior se puede demostrar que
+\begin{align*}
+\mu  &= n p\\
+\sigma ^2  &= n p (1 - p)\\
+\sigma  &=  + \sqrt {n p (1 - p)}
+\end{align*}
+
+En el caso particular de que el experimento se realice una sola vez,
+la variable aleatoria recibe el nombre de \variable{Variable de
+Bernouilli}. Una variable Binomial $X\sim B(n,\ p)$ se puede
+considerar como suma de $n$ variables de Bernouilli idénticas con
+distribución $B(1,\ p)$.
+
+\subsubsection{Variable de Poisson}
+
+Las variables de Poisson surgen de la observación de un conjunto discreto de fenómenos puntuales en un soporte continuo de tiempo, longitud o espacio. Por ejemplo: nº de llamadas que llegan a una centralita telefónica en un tiempo establecido, nº de hematíes en un volumen de sangre, etc. Se supone además que en un soporte continuo suficientemente grande, el número medio de fenómenos ocurridos por unidad de soporte considerado, es una constante que designaremos por $\lambda$.
+
+A la v.a.d. $X$, que recoge el número de fenómenos puntuales que ocurren en un intervalo de amplitud establecida, se le denomina \emph{Variable de Poisson} y se designa por $X\sim P(\lambda)$.
+
+El recorrido de la variable $X$ es $\{0,1,2,...\}$, no existiendo un
+valor máximo que pueda alcanzar. Su función de probabilidad viene
+dada por
+\[
+f(x) = \frac{{\lambda ^x }}{{x!}}\  e^{ - \lambda }
+\]
+y su gráfica aparece en la figura~\ref{g:poisson}
+
+\begin{figure}[h!]
+  \centering
+  \scalebox{0.8}{\input{variables_aleatorias_discretas/img/funcion_probabilidad_poisson}} 
+  \caption{Función de probabilidad de una variable aleatoria de Poisson de media $\lambda=4$}\label{g:poisson}
+\end{figure}
+
+Se puede demostrar que
+\begin{align*}
+\mu  &= \lambda\\
+\sigma ^2  &= \lambda\\
+\sigma  &=  + \sqrt {\lambda}
+\end{align*}
+
+La distribución de Poisson aparece como límite de la distribución
+Binomial cuando el número $n$ de repeticiones del experimento es muy
+grande y la probabilidad $p$ de que ocurra el suceso $A$ considerado
+es muy pequeña. Por ello, la distribución de Poisson se llama
+también \emph{Ley de los Casos Raros}. En la práctica se considera
+aceptable realizar los cálculos de probabilidades correspondientes a
+una variable $B(n,\ p)$ mediante las fórmulas correspondientes a una
+variable $P(\lambda)$ con $\lambda=n p$, siempre que $n\geq 50$
+y $p<0.1$.
+
+\clearpage
+\newpage
+
+
+\section{Ejercicios resueltos}
+
+En los ejercicios prácticos vamos a utilizar las
+siguientes funciones matemáticas, también llamadas operadores, de
+SPSS:
+
+\begin{description}[leftmargin=*]
+\item[PDF.BINOM $(c,n,p)$] que calcula el valor de la función de probabilidad
+en el valor $c$, de la variable binomial de parámetros $n$ y $p$.
+
+\item[PDF.POISSON $(c,\lambda)$] que calcula el valor de la función de probabilidad
+en el valor $c$, de la variable de Poisson de parámetro $\lambda$.
+
+\item[CDF.BINOM $(c,n,p)$] que calcula el valor de la función de distribución
+en el valor $c$, de la variable binomial de parámetros $n$ y $p$.
+
+\item[CDF.POISSON $(c,\lambda)$] que calcula el valor de la función de distribución
+en el valor $c$, de la variable de Poisson de parámetro $\lambda$.
+\end{description}
+
+\begin{enumerate}[leftmargin=*]
+\item Dada la v.a.d. con distribución Binomial $X\sim B(10\,,\,0.4)$ se 
+pide:
+
+\begin{enumerate}
+\item Crear la variable \variable{X} e introducir todos sus posibles
+valores en el editor de datos.
+
+\item  Crear la variable \variable{probabilidad} que contenga la
+probabilidad de cada uno de los valores de la variable \variable{X}.
+Interpretar los valores de la variable obtenidos.
+
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+
+\item Introducir el nombre de la nueva variable que vamos a crear, en este caso \variable{probabilidad}, dentro del
+campo \campo{Variable de destino:}.
+
+\item En el cuadro de diálogo \campo{Expresión numérica:},
+escribir la función \comando{PDF.BINOM(c,n,p)} o seleccionar del cuadro 
+de diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Pdf.Binom}. El primer parámetro de la función 
+\comando{PDF.BINOM(c,n,p)} puede ser
+un único valor o el nombre de una variable para calcular todos sus
+valores a la vez, en cuyo caso se debe introducir la variable \variable{X}.
+El segundo parámetro es el número de veces que se repite el
+experimento, que en nuestro caso es 10 y el último parámetro es la
+probabilidad de éxito, en nuestro caso 0.4. En este caso al
+introducir expresiones numéricas, se utilizará el punto como
+separador de decimales, ya que la coma se usa como separador de
+parámetros. Por último hacer click sobre el botón
+\boton{Aceptar}.
+
+\end{enumerate}
+\end{indicacion}
+
+\item Dibujar la gráfica de la función de probabilidad de la
+variable \variable{X}.
+
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo 
+antiguos\flecha Dispersión/Puntos}.
+
+\item Seleccionar la opción \opcion{Dispersión simple} y hacer click sobre el
+botón \boton{Definir}.
+
+\item Introducir la variable \variable{X} en el cuadro de diálogo
+\campo{Eje X}.
+
+\item Introducir la variable creada \variable{probabilidad} en el
+cuadro de diálogo \campo{Eje Y} y hacer click sobre el botón
+\boton{Aceptar}.
+
+\end{enumerate}
+\end{indicacion}
+
+
+\item  Crear la variable \variable{probacumulada} que contenga la
+función de distribución (probabilidad acumulada) de cada uno de
+los valores de la variable \variable{X}. Interpretar los valores de
+la variable obtenidos.
+
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+
+\item Introducir el nombre de la nueva variable que vamos a crear,
+en este caso \variable{probacumulada}, dentro del campo
+\campo{Variable de destino:}.
+
+
+\item En el cuadro de diálogo \campo{Expresión numérica:},
+escribir la función \comando{CDF.BINOM(c,n,p)} o seleccionar del cuadro 
+de diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Cdf.Binom}. El primer parámetro de la función 
+\comando{CDF.BINOM(c,n,p)} puede ser
+un único valor o el nombre de una variable para calcular todos sus
+valores a la vez, en cuyo caso se debe introducir la variable \variable{X}.
+El segundo parámetro es el número de veces que se repite el
+experimento, que en nuestro caso es 10 y el último parámetro es la
+probabilidad de éxito, en nuestro caso 0.4. En este caso al
+introducir expresiones numéricas, se utilizará el punto como
+separador de decimales, ya que la coma se usa como separador de
+parámetros. Por último hacer click sobre el botón
+\boton{Aceptar}.
+
+
+\end{enumerate}
+\end{indicacion}
+
+\item Dibujar la gráfica de la función de distribución de la
+variable \variable{X}.
+
+\begin{indicacion}
+\begin{enumerate}
+
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo 
+antiguos\flecha Dispersión/Puntos}.
+
+\item Seleccionar la opción \opcion{Dispersión simple} y hacer click sobre el
+botón \boton{Definir}.
+
+\item Introducir la variable \variable{X} en el cuadro de diálogo
+\campo{Eje X}.
+
+\item Introducir la variable creada \variable{probacumulada} en el
+cuadro de diálogo \campo{Eje Y} y hacer click sobre el botón
+\texttt{Aceptar}.
+
+\end{enumerate}
+\end{indicacion}
+
+
+\item Calcular las siguientes probabilidades:
+\begin{enumerate}
+\item $P(X=7)$.
+
+\begin{indicacion}
+Calcular \comando{PDF.BINOM(7,10,0.4)}.
+\end{indicacion}
+
+\item $P(X\leq 4)$.
+
+\begin{indicacion}
+Calcular \comando{CDF.BINOM(4,10,0.4)}.
+\end{indicacion}
+
+\item $P(X>5)$.
+
+\begin{indicacion}
+Calcular 1-\comando{CDF.BINOM(5,10,0.4)}.
+\end{indicacion}
+
+\item $P(2\leq X < 9)$.
+
+\begin{indicacion}
+Calcular
+\comando{CDF.BINOM(8,10,0.4)}-\comando{CDF.BINOM(1,10,0.4)}.
+\end{indicacion}
+
+\end{enumerate}
+
+\begin{indicacion}
+Se podrían calcular todos la valores a la vez definiendo la
+variable \variable{X}, introduciendo todos los valores que
+necesitamos, en nuestro caso 7, 4, 5, 8, y 1 y creando las
+variables \variable{probabilidad} y \variable{probacumulada}
+utilizando para ello las funciones \comando{PDF.BINOM} y 
+\comando{CDF.BINOM} respectivamente.
+\end{indicacion}
+
+\end{enumerate}
+
+\item Sea X una variable aleatoria binomial tal que con $X\sim B(40\,,\,0.1)$
+
+\begin{enumerate}
+\item Crear la variable \variable{X} e introducir todos sus posibles
+valores en el editor de datos.
+
+\item  Crear la variable \variable{probabilidad} que contenga la
+probabilidad de cada uno de los valores de la variable \variable{X}.
+Interpretar los valores de la variable obtenidos.
+
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+
+\item Introducir el nombre de la nueva variable que vamos a crear,
+en este caso \variable{probabilidad}, dentro del campo
+\texttt{Variable de destino:}.
+
+\item En el cuadro de diálogo \campo{Expresión numérica:},
+escribir la función \comando{PDF.BINOM(c,n,p)} o seleccionar del cuadro 
+de diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Pdf.Binom}. El primer parámetro de la función 
+\comando{PDF.BINOM(c,n,p)} puede ser
+un único valor o el nombre de una variable para calcular todos sus
+valores a la vez, en cuyo caso se debe introducir la variable \variable{X}.
+El segundo parámetro es el número de veces que se repite el
+experimento, que en nuestro caso es 40 y el último parámetro es la
+probabilidad de éxito, en nuestro caso 0.1. En este caso al
+introducir expresiones numéricas, se utilizará el punto como
+separador de decimales, ya que la coma se usa como separador de
+parámetros. Por último hacer click sobre el botón
+\boton{Aceptar}.
+
+
+\end{enumerate}
+\end{indicacion}
+
+\item Dibujar la gráfica de la función de probabilidad de la
+variable \variable{X}.
+
+\begin{indicacion}
+\begin{enumerate}
+
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo 
+antiguos\flecha Dispersión/Puntos}.
+
+\item Seleccionar la opción \opcion{Dispersión simple} y hacer click sobre el
+botón \boton{Definir}.
+
+\item Introducir la variable \variable{X} en el cuadro de diálogo
+\campo{Eje X}.
+
+\item Introducir la variable creada \variable{probabilidad} en el
+cuadro de diálogo \campo{Eje Y} y hacer click sobre el botón
+\boton{Aceptar}.
+
+\end{enumerate}
+\end{indicacion}
+\item Calcular:
+
+\begin{enumerate}
+
+\item $P(X=8)$.
+
+\begin{indicacion}
+Calcular \comando{PDF.BINOM(8,40,0.1)}.
+\end{indicacion}
+
+
+\item $P(X\geq 7)$.
+
+\begin{indicacion}
+Calcular 1-\comando{CDF.BINOM(6,40,0.1)}.
+\end{indicacion}
+
+\item $P(X< 4)$.
+
+\begin{indicacion}
+Calcular \comando{CDF.BINOM(3,40,0.1)}.
+\end{indicacion}
+
+\item $P(3\leq X \leq  9)$.
+
+\begin{indicacion}
+Calcular
+\comando{CDF.BINOM(9,40,0.1)}-\comando{CDF.BINOM(2,40,0.1)}.
+\end{indicacion}
+
+\end{enumerate}
+
+\begin{indicacion}
+Se podrían calcular todos la valores a la vez definiendo la
+variable \variable{X}, introduciendo todos los valores que
+necesitamos, en nuestro caso 8, 6, 3, 9, y 2 y creando las
+variables \variable{probabilidad} y \variable{probacumulada}
+utilizando para ello las funciones PDF.BINOM y CDF.BINOM
+respectivamente.
+\end{indicacion}
+\end{enumerate}
+
+
+\item Dada la v.a.d. con distribución de Poisson $X\sim P(4)$, se
+pide
+
+\begin{enumerate}
+\item Crear la variable \variable{X} e introducir los valores de
+dicha variable desde 0 hasta 10 en el editor de datos. ¿Podríamos
+introducir todos los valores de la variable \variable{X}?
+
+\item  Crear la variable \variable{probabilidad} que contenga la
+probabilidad de cada uno de los valores de la variable \variable{X}.
+Interpretar los valores de la variable obtenidos.
+
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+
+\item Introducir el nombre de la nueva variable que vamos a crear,
+en este caso \variable{probabilidad}, dentro del campo
+\campo{Variable de destino:}.
+
+\item En el cuadro de diálogo \campo{Expresión numérica:},
+escribir la función \comando{PDF.POISSON(c,media)} o seleccionar del cuadro 
+de diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Pdf.Poisson}. El primer parámetro de la función 
+\comando{PDF.POISSON(c,media)} puede ser
+un único valor o el nombre de una variable para calcular todos sus
+valores a la vez, en cuyo caso se debe introducir la variable \variable{X} 
+y el segundo parámetro es la media de la variable, en nuestro caso 4. En 
+este caso al introducir expresiones numéricas, se utilizará el punto como
+separador de decimales, ya que la coma se usa como separador de
+parámetros. Por último hacer click sobre el botón
+\boton{Aceptar}.
+
+
+\end{enumerate}
+\end{indicacion}
+
+
+
+\item Dibujar la gráfica de la función de probabilidad de la
+variable $X$. ¿Se parece esta gráfica a la gráfica de la función
+de probabilidad de la binomial $B(40\,,\, 0.1)$ del ejercicio
+anterior? ¿Cuál puede ser la causa del parecido?
+
+\begin{indicacion}
+\begin{enumerate}
+
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo 
+antiguos\flecha Dispersión/Puntos}.
+
+
+\item Seleccionar la opción \opcion{Dispersión simple} y hacer click sobre el
+botón \boton{Definir}.
+
+\item Introducir la variable \variable{X} en el cuadro de diálogo
+\campo{Eje X}.
+
+\item Introducir la variable creada \variable{probabilidad} en el
+cuadro de diálogo \campo{Eje Y} y hacer click sobre el botón
+\boton{Aceptar}.
+
+\end{enumerate}
+\end{indicacion}
+
+\item  Crear la variable \variable{probacumulada} que contenga la
+función de distribución (probabilidad acumulada) de cada uno de
+los valores de la variable \variable{X}. Interpretar los valores de
+la variable obtenidos.
+
+\begin{indicacion}
+\begin{enumerate}
+\item Seleccionar el menú \menu{Transformar\flecha Calcular variable}.
+
+\item Introducir el nombre de la nueva variable que vamos a crear,
+en este caso \variable{probacumulada}, dentro del campo
+\campo{Variable de destino:}.
+
+
+
+\item En el cuadro de diálogo \campo{Expresión numérica:},
+escribir la función \comando{CDF.POISSON(c,media)} o seleccionar del cuadro 
+de diálogo \campo{Grupo de funciones} la opción \comando{Todo} y en el 
+cuadro de diálogo \campo{Funciones y variables especiales} la 
+función \comando{Cdf.Poisson}. El primer parámetro de la función 
+\comando{CDF.POISSON(c,media)} puede ser
+un único valor o el nombre de una variable para calcular todos sus
+valores a la vez, en cuyo caso se debe introducir la variable \variable{X} 
+y el segundo parámetro es la media de la variable, en nuestro caso 4.
+En este caso al introducir expresiones numéricas, se utilizará el punto 
+como separador de decimales, ya que la coma se usa como separador de
+parámetros. Por último hacer click sobre el botón
+\boton{Aceptar}.
+\end{enumerate}
+\end{indicacion}
+
+
+\item Dibujar la gráfica de la función de distribución de la variable \variable{X}.
+
+\begin{indicacion}
+\begin{enumerate}
+
+\item Seleccionar el menú \menu{Gráficos\flecha Cuadros de diálogo 
+antiguos\flecha Dispersión/Puntos}.
+
+
+\item Seleccionar la opción \opcion{Dispersión simple} y hacer click sobre el
+botón \boton{Definir}.
+
+\item Introducir la variable \variable{X} en el cuadro de diálogo
+\campo{Eje X}.
+
+\item Introducir la variable creada \variable{probacumulada} en el
+cuadro de diálogo \campo{Eje Y} y hacer click sobre el botón
+\boton{Aceptar}.
+
+\end{enumerate}
+\end{indicacion}
+
+
+
+\item Calcular las siguientes probabilidades:
+
+\begin{enumerate}
+\item $P(X=9)$.
+
+\begin{indicacion}
+Calcular \comando{PDF.POISSON(9,4)}.
+\end{indicacion}
+
+\item $P(X\leq 6)$.
+
+\begin{indicacion}
+Calcular \comando{CDF.POISSON(6,4)}.
+\end{indicacion}
+
+\item $P(X\geq 5)$.
+
+\begin{indicacion}
+Calcular 1-\comando{CDF.POISSON(4,4)}.
+\end{indicacion}
+
+\item $P(4\leq X < 50)$.
+
+\begin{indicacion}
+Calcular \comando{CDF.POISSON(49,4)}-\comando{CDF.POISSON(3,4)}.
+\end{indicacion}
+
+\end{enumerate}
+
+\begin{indicacion}
+Si nos falta algún valor, lo introducimos en la variable
+\variable{X} y volvemos a calcular las variables
+\variable{probabilidad} y \variable{probacumulada}.
+\end{indicacion}
+
+\end{enumerate}
+
+\item La probabilidad de curación de un paciente al ser sometido a un determinado tratamiento es $0.85$. Calcular la probabilidad de que en un grupo de 6 enfermos sometidos a tratamiento:
+\begin{enumerate}
+
+\item Se curen la mitad.
+
+\begin{indicacion}
+El número de enfermos que se curan sigue una distribución Binomial $X\sim B(6\,,\,0.85)$, 
+por lo que la probabilidad de que se curen la mitad, es decir $P(X=3)$, se calculará 
+mediante \comando{PDF.BINOM(3,6,0.85)}.
+\end{indicacion}
+
+\item Se curen al menos 4.
+\begin{indicacion}
+La $P(X\geq 4)$, se calculará 
+mediante 1-\comando{CDF.BINOM(3,6,0.85)}.
+\end{indicacion}
+
+\end{enumerate}
+
+\item En un servicio de urgencias de cierto hospital se sabe que, en media, llegan 2 pacientes cada hora. Calcular:
+
+\begin{enumerate}
+
+\item ¿Cuál es la probabilidad de que en una hora lleguen 3 pacientes?
+\begin{indicacion}
+El número de pacientes que llegan en una hora sigue una distribución de Poisson de media 2, $X\sim P(2)$, por lo que la probabilidad de que en una hora lleguen 3 pacientes, es decir $P(X=3)$, se calculará mediante \comando{PDF.POISSON(3,2)}.
+\end{indicacion}
+
+\item Si los turnos de urgencias son de 8 horas, ¿cuál será la probabilidad de que en un turno lleguen más de 5 pacientes?
+\begin{indicacion}
+El número de pacientes que llegan en un turno de urgencias sigue una distribución de Poisson de media 16,  $X\sim P(16)$, por lo que la probabilidad de que lleguen más de 5, $P(X>5)$, se calculará mediante 1-\comando{CDF.POISSON(5,16)}.
+\end{indicacion}
+
+
+\end{enumerate}
+
+\end{enumerate}
+
+
+\section{Ejercicios propuestos}
+\begin{enumerate}[leftmargin=*]
+
+
+\item Al lanzar 100 veces una moneda, ¿cuál es la probabilidad de obtener entre 40 y 60 caras?
+
+\item La probabilidad de que al administrar una vacuna dé una determinada reacción es $0.001$. Si se vacunan 2000 personas ¿cuál es la probabilidad de que aparezca alguna reacción adversa?
+
+\item El número medio de llamadas por minuto que llegan a una centralita telefónica es igual a 120. Hallar las probabilidades de los sucesos siguientes:
+\begin{enumerate}
+
+\item $A$=durante 2 segundos lleguen a la centralita menos de 4 llamadas.
+
+\item $B$=durante 3 segundos lleguen a la centralita 3 llamadas como mínimo.
+
+\end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+
